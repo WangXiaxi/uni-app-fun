@@ -1,0 +1,59 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		},
+		{
+			"path": "pages/call/index",
+			"style": {
+				"navigationBarTitleText": "拨号"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "忆杭网",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#f8f8f8"
+	},
+	"tabBar": {
+		"color": "#C0C4CC",
+		"selectedColor": "#1860EB",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/bar-1.png",
+				"selectedIconPath": "static/bar-1-act.png",
+				"text": "通讯录"
+			},
+			{
+				"pagePath": "pages/category/category",
+				"iconPath": "static/bar-2.png",
+				"selectedIconPath": "static/bar-2-act.png",
+				"text": "最近通话"
+			},
+			{
+				"pagePath": "pages/call/index",
+				"iconPath": "static/bar-3.png",
+				"selectedIconPath": "static/bar-3-act.png",
+				"text": "拨号"
+			},
+			{
+				"pagePath": "pages/cart/cart",
+				"iconPath": "static/bar-4.png",
+				"selectedIconPath": "static/bar-4-act.png",
+				"text": "加油站"
+			},
+			{
+				"pagePath": "pages/user/user",
+				"iconPath": "static/bar-5.png",
+				"selectedIconPath": "static/bar-5-act.png",
+				"text": "我的"
+			}
+		]
+	}
+}
