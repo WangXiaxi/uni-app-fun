@@ -1,13 +1,17 @@
 <template>
 	<view class="content-three">
-		<view class="num" v-if="number.length > 0">{{number}}</view>
-		<view class="num no" v-else>请输入号码</view>
-		<scroll-view scroll-with-animation scroll-y class="item-list">
-			<view class="item" v-for="(item, index) in list" :key="index" @click="dialPhone(item)">
-				<view>{{item.phone}}</view>
-				<view>{{item.name}}</view>
-			</view>
-		</scroll-view>
+		<!-- 无值背景图 -->
+		<!-- 有值展示 -->
+		<view class="action-part">
+			<view class="num" v-if="number.length > 0">{{number}}</view>
+			<view class="num no" v-else>请输入号码</view>
+			<scroll-view scroll-with-animation scroll-y class="item-list">
+				<view class="item" v-for="(item, index) in list" :key="index" @click="dialPhone(item)">
+					<view>{{item.phone}}</view>
+					<view>{{item.name}}</view>
+				</view>
+			</scroll-view>
+		</view>
 		<view class="key-main">
 			<view @touchend="addClass('')" @touchstart="addClass(item)" :class="{active: isAddClass === item}" class="key-item" v-for="(item, index) in numberList" :key="index" @click="addNum(item)">
 				<view class="">{{item}}</view>
@@ -120,22 +124,22 @@
 	}
 
 	.item-list {
-		padding: 0 24upx;
-		height: calc(100vh - 850upx);
+		padding: 0 24rpx;
+		height: calc(100vh - 850rpx);
 
 		.item {
 			border-bottom: 1px solid #f0f0f0;
 			color: #aaa;
-			font-size: 28upx;
-			line-height: 50upx;
+			font-size: 28rpx;
+			line-height: 50rpx;
 		}
 	}
 
 	.num {
 		background: #f7f7f7;
-		height: 100upx;
+		height: 100rpx;
 		text-align: center;
-		line-height: 100upx;
+		line-height: 100rpx;
 
 		&.no {
 			color: #aaa;
@@ -144,25 +148,25 @@
 
 	.key-main {
 		position: fixed;
-		padding: 30upx 75upx;
-		height: 750upx;
+		padding: 30rpx 75rpx;
+		height: 750rpx;
 		left: 0;
 		right: 0;
 		bottom: 0;
 		overflow: hidden;
 		background: #FFFFFF;
 		box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.05);
-		border-top-left-radius: 20upx;
-		border-top-right-radius: 20upx;
+		border-top-left-radius: 20rpx;
+		border-top-right-radius: 20rpx;
 
 		.key-item {
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-			font-size: 56upx;
-			width: 200upx;
-			height: 130upx;
+			font-size: 56rpx;
+			width: 200rpx;
+			height: 130rpx;
 			float: left;
 			.eng {
 				font-size: 24rpx;
@@ -170,12 +174,12 @@
 			}
 			&.active {
 				background: #f2f3f4;
-				border-radius: 5upx;
+				border-radius: 5rpx;
 			}
 
 			.img {
-				width: 57upx;
-				height: 41upx;
+				width: 57rpx;
+				height: 41rpx;
 			}
 		}
 	}

@@ -1,15 +1,18 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "uni-app"
-			}
-		},
+
 		{
 			"path": "pages/call/index",
 			"style": {
-				"navigationBarTitleText": "拨号"
+				"navigationBarTitleText": "拨号",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/news/index",
+			"style": {
+				"navigationBarTitleText": "通讯录",
+				"navigationStyle": "custom"
 			}
 		}
 	],
@@ -25,7 +28,7 @@
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
 		"list": [{
-				"pagePath": "pages/index/index",
+				"pagePath": "pages/news/index",
 				"iconPath": "static/bar-1.png",
 				"selectedIconPath": "static/bar-1-act.png",
 				"text": "通讯录"
