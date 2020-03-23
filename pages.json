@@ -9,6 +9,13 @@
 			}
 		},
 		{
+			"path": "pages/recently/index",
+			"style": {
+				"navigationBarTitleText": "最近通话",
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/news/index",
 			"style": {
 				"navigationBarTitleText": "通讯录",
@@ -34,7 +41,7 @@
 				"text": "通讯录"
 			},
 			{
-				"pagePath": "pages/category/category",
+				"pagePath": "pages/recently/index",
 				"iconPath": "static/bar-2.png",
 				"selectedIconPath": "static/bar-2-act.png",
 				"text": "最近通话"

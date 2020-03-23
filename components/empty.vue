@@ -59,7 +59,7 @@
 		top: 0;
 		right: 0;
 		bottom: 0;
-		background: $page-color-base;
+		background: #FFFFFF;
 		padding-bottom: 120rpx;
 		&.relative {
 			position: relative;
