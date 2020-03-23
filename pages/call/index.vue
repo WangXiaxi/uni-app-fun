@@ -137,9 +137,9 @@
 
 	.num {
 		background: #f7f7f7;
-		height: 100rpx;
+		height: 202rpx;
 		text-align: center;
-		line-height: 100rpx;
+		line-height: 202rpx;
 
 		&.no {
 			color: #aaa;
