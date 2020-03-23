@@ -51,7 +51,7 @@
 </template>
 
 <script>
-	import faxianModel from '@/api/faxian/index.js'
+	import faxianModel from '@/api/faxian.js'
 	import empty from '@/components/empty'
 	import uniLoadMore from '@/components/uni-load-more/uni-load-more.vue'
 	import {

@@ -125,7 +125,7 @@
 
 	.item-list {
 		padding: 0 24rpx;
-		height: calc(100vh - 850rpx);
+		height: calc(100vh - 950rpx);
 
 		.item {
 			border-bottom: 1px solid #f0f0f0;
@@ -140,7 +140,7 @@
 		height: 202rpx;
 		text-align: center;
 		line-height: 202rpx;
-
+		font-size: 60rpx;
 		&.no {
 			color: #aaa;
 		}

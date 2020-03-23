@@ -63,9 +63,10 @@
 			align-items: center;
 			position: relative;
 			&::after {
+				transform: scaleY(0.5);
 				position: absolute;
 				content: '';
-				height: 1rpx;
+				height: 2rpx;
 				width: 718rpx;
 				left: 32rpx;
 				bottom: -26rpx;

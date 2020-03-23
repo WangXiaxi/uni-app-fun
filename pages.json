@@ -9,6 +9,13 @@
 			}
 		},
 		{
+			"path": "pages/faxian/index",
+			"style": {
+				"navigationBarTitleText": "加油站",
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/recently/index",
 			"style": {
 				"navigationBarTitleText": "最近通话",
@@ -53,7 +60,7 @@
 				"text": "拨号"
 			},
 			{
-				"pagePath": "pages/cart/cart",
+				"pagePath": "pages/faxian/index",
 				"iconPath": "static/bar-4.png",
 				"selectedIconPath": "static/bar-4-act.png",
 				"text": "加油站"
