@@ -139,7 +139,8 @@
 		background: #f7f7f7;
 		height: 202rpx;
 		text-align: center;
-		line-height: 202rpx;
+		padding-top: 40rpx;
+		line-height: 162rpx;
 		font-size: 60rpx;
 		&.no {
 			color: #aaa;
@@ -186,7 +187,7 @@
 	.btn-call {
 		position: fixed;
 		left: 50%;
-		bottom: 30rpx;
+		bottom: 50rpx;
 		margin-left: -60rpx;
 		z-index: 10;
 		width: 120rpx;
