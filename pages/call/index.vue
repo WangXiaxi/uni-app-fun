@@ -186,7 +186,7 @@
 	.btn-call {
 		position: fixed;
 		left: 50%;
-		bottom: 130rpx;
+		bottom: 30rpx;
 		margin-left: -60rpx;
 		z-index: 10;
 		width: 120rpx;
