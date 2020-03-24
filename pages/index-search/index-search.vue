@@ -63,7 +63,7 @@
 					})
 				})
 				this.setParams(data)
-				this.navTo('/pages/phoneView/detail/detail')
+				this.navTo('/pages/contacts-detail/index')
 			},
 			setSearchText() {
 				const search = this.search

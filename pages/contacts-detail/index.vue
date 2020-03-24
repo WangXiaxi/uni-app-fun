@@ -30,7 +30,7 @@
 		methods: {
 			dial(item) { // 拨号操作
 				uni.navigateTo({
-					url: `/pages/phoneView/ring/ring?name=${this.params.name}&phone=${item}`
+					url: `/pages/contacts-ring/index?name=${this.params.name}&phone=${item}`
 				})
 			}
 		}
@@ -41,29 +41,29 @@
 	.top {
 		background: #f7f7f7;
 		text-align: center;
-		padding: 50rpx 0;
+		padding: 50upx 0;
 		color: #999999;
-		font-size: 36rpx;
+		font-size: 36upx;
 		.header {
-			width: 100rpx;
-			height: 100rpx;
-			margin-bottom: 30rpx;
+			width: 100upx;
+			height: 100upx;
+			margin-bottom: 30upx;
 		}
 	}
 	.list {
-		padding: 0 24rpx;
+		padding: 0 24upx;
 		.item {
 			display: flex;
-			padding: 24rpx 0;
-			font-size: 32rpx;
+			padding: 24upx 0;
+			font-size: 32upx;
 			border-bottom: 1px solid #f0f0f0;
 			.text {
-				line-height: 50rpx;
+				line-height: 50upx;
 				flex: 1;
 			}
 			image {
-				width: 50rpx;
-				height: 50rpx;
+				width: 50upx;
+				height: 50upx;
 			}
 		}
 	}

@@ -58,7 +58,7 @@
 					return this.$api.msg('输入号码不正确！')
 				}
 				uni.navigateTo({
-					url: `/pages/phoneView/ring/ring?name=${item.name}&phone=${item.phone}`
+					url: `/pages/contacts-ring/index?name=${item.name}&phone=${item.phone}`
 				})
 			},
 			dial() { // 拨号操作
@@ -68,11 +68,11 @@
 						phone
 					} = this.list[0]
 					uni.navigateTo({
-						url: `/pages/phoneView/ring/ring?name=${name}&phone=${phone}`
+						url: `/pages/contacts-ring/index?name=${name}&phone=${phone}`
 					})
 				} else {
 					uni.navigateTo({
-						url: `/pages/phoneView/ring/ring?name=${this.number}&phone=${this.number}`
+						url: `/pages/contacts-ring/index?name=${this.number}&phone=${this.number}`
 					})
 				}
 			},
