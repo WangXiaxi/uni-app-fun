@@ -11,7 +11,7 @@
 					<view class="divider" :id="`id${item.letter === '#' ? 'xxx' : item.letter}`"> <text class="divider-text">{{item.letter}}</text> </view>
 					<view class="item" hover-class="hover" :hover-start-time="20" v-for="(contact,index) in item.contacts" :key="index"
 					 @click='onSelectClick(contact)'>
-						<image class="portrait" src="../../static/icon/gywm.png"></image>
+						<image class="portrait" src="../../static/gywm.png"></image>
 						<view class="name">{{contact.name}}</view>
 					</view>
 				</view>
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+	
 	import pinyin from './components/pinyin/pinyin3.js'
 	import {
 		mapGetters,
@@ -40,14 +41,6 @@
 	} from 'vuex'
 	const platform = uni.getSystemInfoSync().platform
 	export default {
-		props: {
-			contactsCopy: {
-				type: Array,
-				default: () => {
-					return []
-				}
-			}
-		},
 		data() {
 			return {
 				scrollViewId: 'we',
@@ -58,18 +51,23 @@
 				letter: '',
 				isSearch: false,
 				contactItems: [],
-				contacts: []
+				contactsCopy: []
 			}
 		},
-		created() {
+		computed: {
+			...mapGetters(['contacts']),
+		},
+		onLoad() {
+			this.initContacts()
 			const res = uni.getSystemInfoSync();
 			this.barHeight = res.windowHeight / 27;
-		},
-		onReady() {
-
+			setTimeout(() => {
+				this.actTop()
+			}, 500);
 		},
 		methods: {
 			...mapMutations(['setParams']),
+			...mapActions(['initContacts']),
 			actTop() {
 				var that = this
 				const query = uni.createSelectorQuery().in(this);
@@ -109,8 +107,8 @@
 				//判断选择区域,只有在选择区才会生效
 				if (y > offsettop) {
 					var num = Math.floor((y - offsettop) / this.barHeight);
-					if (num < this.contacts.length) {
-						this.letter = this.contacts[num].letter
+					if (num < this.contactsCopy.length) {
+						this.letter = this.contactsCopy[num].letter
 						this.scrollViewId = 'id' + (this.letter === '#' ? 'xxx' : this.letter)
 					}
 				}
@@ -118,20 +116,20 @@
 
 			onSelectClick: function(contact) {
 				this.setParams(contact)
-				this.navTo('/pages/phoneView/detail/detail')
+				this.navTo('/pages/contacts-detail/index')
 			},
 			onSearchInput: function(value) {
-				this.setParams(this.contacts)
-				this.navTo('/pages/phoneView/index-search/index-search')
+				this.setParams(this.contactsCopy)
+				this.navTo('/pages/index-search/index')
 			}
 		},
 		watch: {
 			search(v) {
 				this.onSearchInput(v)
 			},
-			contactsCopy: {
+			contacts: {
 				handler: function(v) {
-					this.contacts = JSON.parse(JSON.stringify(v))
+					this.contactsCopy = JSON.parse(JSON.stringify(v))
 					this.contactItems = JSON.parse(JSON.stringify(v))
 				},
 				immediate: true
@@ -224,7 +222,7 @@
 		align-items: center;
 		justify-content: center;
 		font-size: 24rpx;
-		color: #888;
+		color: #083999;
 		z-index: 1005;
 	}
 

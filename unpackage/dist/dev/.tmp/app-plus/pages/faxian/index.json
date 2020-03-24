@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "加油站",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "page-first": "/pages/faxian/components/child-pages/page-first"
+  }
+}

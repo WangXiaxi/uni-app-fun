@@ -1,16 +1,18 @@
 <template>
 	<view class="content-three">
-		<!-- 无值背景图 -->
 		<!-- 有值展示 -->
-		<view class="action-part">
-			<view class="num" v-if="number.length > 0">{{number}}</view>
-			<view class="num no" v-else>请输入号码</view>
+		<view class="action-part" v-if="number.length > 0">
+			<view class="num">{{number}}</view>
 			<scroll-view scroll-with-animation scroll-y class="item-list">
 				<view class="item" v-for="(item, index) in list" :key="index" @click="dialPhone(item)">
 					<view>{{item.phone}}</view>
 					<view>{{item.name}}</view>
 				</view>
 			</scroll-view>
+		</view>
+		<!-- 无值背景图 -->
+		<view class="bg" v-else>
+			<image src="../../static/bg-call.jpg"></image>
 		</view>
 		<view class="key-main">
 			<view @touchend="addClass('')" @touchstart="addClass(item)" :class="{active: isAddClass === item}" class="key-item" v-for="(item, index) in numberList" :key="index" @click="addNum(item)">
@@ -31,15 +33,9 @@
 </template>
 
 <script>
+	import { mapGetters, mapActions, mapMutations } from 'vuex'
+
 	export default {
-		props: {
-			contacts: {
-				type: Array,
-				default: () => {
-					return []
-				}
-			}
-		},
 		data() {
 			return {
 				number: '',
@@ -49,7 +45,14 @@
 				isAddClass: ''
 			}
 		},
+		computed: {
+			...mapGetters(['contacts']),
+		},
+		onLoad() {
+			this.initContacts()
+		},
 		methods: {
+			...mapActions(['initContacts']),
 			addClass(e) {
 				this.isAddClass = e
 			},
@@ -122,7 +125,17 @@
 	.content-three {
 		height: 100%;
 	}
-
+	
+	.bg {
+		width: 750rpx;
+		height: 472rpx;
+		image {
+			width: 750rpx;
+			height: 472rpx;
+			display: block;
+		}
+	}
+	
 	.item-list {
 		padding: 0 24rpx;
 		height: calc(100vh - 950rpx);
@@ -193,7 +206,7 @@
 		width: 120rpx;
 		height: 120rpx;
 		border-radius: 50%;
-		background: #1860EB;
+		background: #083999;
 		display: flex;
 		justify-content: center;
 		align-items: center;

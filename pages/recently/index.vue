@@ -27,7 +27,7 @@
 </template>
 <script>
 	import empty from '@/components/empty'
-	// import phoneModel from '../../../api/phone/index.js'
+	import phoneModel from '../../api/phone.js'
 	export default {
 		components: {
 			empty

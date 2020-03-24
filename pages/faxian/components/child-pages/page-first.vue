@@ -1,6 +1,8 @@
 <template>
 
 	<view class="page-section swiper">
+		<view style="height: 240rpx;"></view>
+		<view class="bg"></view>
 		<view class="big-title">加油站</view>
 		<!-- 查询条件 -->
 		<view class="sort">
@@ -20,6 +22,7 @@
 				</picker>
 			</view>
 		</view>
+		
 
 		<!-- 主要 内容区域 -->
 		<!-- 空白页 -->
@@ -237,26 +240,57 @@
 </script>
 
 <style lang="scss">
+	.page-section {
+		padding-bottom: 30rpx;
+	}
+	.bg {
+		width: 100%;
+		height: 240rpx;
+		background-color: #FFFFFF;
+		z-index: 9;
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
 	page,
 	.container {
-		background: #f5f5f5;
+		background: #FFFFFF;
 		position: relative;
 		z-index: 1;
 	}
 	.big-title {
+		position: fixed;
+		top: 0;
+		left: 0;
 		padding-top: 84rpx;
 		font-size: 48rpx;
 		line-height: 48rpx;
 		color: #111111;
 		padding-left: 31rpx;
+		z-index: 10;
 	}
 	.sort {
+		position: fixed;
+		top: 156rpx;
 		background: #FFFFFF;
-		width: 702upx;
-		margin: 24upx auto 0;
+		width: 700rpx;
+		left: 50%;
+		margin-left: -350rpx;
 		border-top-left-radius: 10upx;
 		border-top-right-radius: 10upx;
 		display: flex;
+		box-shadow: 0px 0rpx 6rpx 0px rgba(0, 0, 0, 0.05);
+		z-index: 10;
+		&::after {
+			content: ' ';
+			width: 100%;
+			height: 10rpx;
+			position: absolute;
+			bottom: -5rpx;
+			z-index: 10;
+			left: 0;
+			background: #FFFFFF;
+		}
 	}
 
 	.sort-item {
@@ -283,10 +317,11 @@
 
 	.main-info {
 		background: #FFFFFF;
-		width: 702upx;
+		width: 700rpx;
 		margin: 0 auto 0;
 		border-bottom-left-radius: 10upx;
 		border-bottom-right-radius: 10upx;
+		box-shadow: 0px 0rpx 6rpx 0px rgba(0, 0, 0, 0.05);
 	}
 
 	.item-main {

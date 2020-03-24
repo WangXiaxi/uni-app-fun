@@ -5,6 +5,7 @@
  * @version $Id$
  */
 import phoneModel from '../../api/phone.js'
+import pinyin from '../../pages/news/components/pinyin/pinyin3.js'
 
 const login = {
 	state: {
@@ -92,7 +93,6 @@ const login = {
 			}, (e) => {
 				onAddressBookSetting()
 			});
-			
 		},
 		// 注册并登陆 phone
 		async loginPhone({

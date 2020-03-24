@@ -1,0 +1,41 @@
+@charset "UTF-8";
+/* 页面左右间距 */
+/* 文字尺寸 */
+/*文字颜色*/
+/* 边框颜色 */
+/* 图片加载中颜色 */
+/* 行为相关颜色 */
+.top {
+  background: #f7f7f7;
+  text-align: center;
+  padding: 50rpx 0;
+  color: #999999;
+  font-size: 36rpx;
+}
+.top .header {
+    width: 100rpx;
+    height: 100rpx;
+    margin-bottom: 30rpx;
+}
+.list {
+  padding: 0 24rpx;
+}
+.list .item {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    padding: 24rpx 0;
+    font-size: 32rpx;
+    border-bottom: 1px solid #f0f0f0;
+}
+.list .item .text {
+      line-height: 50rpx;
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+              flex: 1;
+}
+.list .item image {
+      width: 50rpx;
+      height: 50rpx;
+}
+

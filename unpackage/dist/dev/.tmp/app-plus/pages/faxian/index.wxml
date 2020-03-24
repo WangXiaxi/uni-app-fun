@@ -1,0 +1,1 @@
+<view class="container"><view class="swiper-wrap"><page-first class="vue-ref" vue-id="1" data-ref="page" bind:__l="__l"></page-first></view></view>

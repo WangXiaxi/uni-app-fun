@@ -14,7 +14,7 @@
 </template>
 
 <script>
-	import phoneModel from '../../../api/phone/index.js'
+	import phoneModel from '../../api/phone.js'
 	import { mapGetters } from 'vuex'
 	export default {
 		data() {
