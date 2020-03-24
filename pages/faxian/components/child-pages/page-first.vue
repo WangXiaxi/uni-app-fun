@@ -1,6 +1,7 @@
 <template>
 
 	<view class="page-section swiper">
+		<view class="big-title">加油站</view>
 		<!-- 查询条件 -->
 		<view class="sort">
 			<view class="sort-item">
@@ -51,7 +52,7 @@
 </template>
 
 <script>
-	import faxianModel from '@/api/faxian/index.js'
+	import faxianModel from '@/api/faxian.js'
 	import empty from '@/components/empty'
 	import uniLoadMore from '@/components/uni-load-more/uni-load-more.vue'
 	import {
@@ -242,7 +243,13 @@
 		position: relative;
 		z-index: 1;
 	}
-
+	.big-title {
+		padding-top: 84rpx;
+		font-size: 48rpx;
+		line-height: 48rpx;
+		color: #111111;
+		padding-left: 31rpx;
+	}
 	.sort {
 		background: #FFFFFF;
 		width: 702upx;
