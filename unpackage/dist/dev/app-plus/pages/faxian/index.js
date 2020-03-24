@@ -1,2 +1,0 @@
-setCssToHead(["@charset \x22UTF-8\x22;\nbody, .",[1],"container { background: #FFFFFF; position: relative; z-index: 1; }\n",],undefined,{path:"./pages/faxian/index.wxss"})();
-document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/faxian/index.wxml') } }));

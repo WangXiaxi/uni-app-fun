@@ -1,1 +1,0 @@
-<view class="{{['empty-content',(relative)?'relative':'']}}" style="{{(styles)}}"><image class="empty-content-image" src="{{setSrc}}" mode="aspectFit"></image><view class="text">{{text}}</view></view>

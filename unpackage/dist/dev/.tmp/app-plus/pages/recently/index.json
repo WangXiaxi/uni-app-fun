@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "最近通话",
-  "navigationStyle": "custom",
-  "usingComponents": {
-    "empty": "/components/empty"
-  }
-}

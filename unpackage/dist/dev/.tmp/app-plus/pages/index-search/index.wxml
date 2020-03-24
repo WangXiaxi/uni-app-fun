@@ -1,1 +1,0 @@
-<view><view class="item-list"><block wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view data-event-opts="{{[['tap',[['onSelectClick',['$0'],[[['list','',index]]]]]]]}}" class="{{['item',(item.type===0)?'act':'']}}" bindtap="__e"><view>{{item.name}}</view><block wx:if="{{item.type===1}}"><view>{{item.phone}}</view></block></view></block></view></view>
