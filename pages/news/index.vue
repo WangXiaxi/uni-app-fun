@@ -5,7 +5,7 @@
 			<image class="ic" src="../../static/ipone_search.png"></image>
 			<view class="search" @click="onSearchInput()">搜索</view>
 		</view>
-		<view class="mobile-list">
+		<view class="mobile-list" v-if="contactsCopy.length !== 0">
 			<scroll-view class="contact-scroll" scroll-y :scroll-into-view="scrollViewId">
 				<view class="box" v-for="(item,key) in contacts" :key="key">
 					<view class="divider" :id="`id${item.letter === '#' ? 'xxx' : item.letter}`"> <text class="divider-text">{{item.letter}}</text> </view>
@@ -27,6 +27,7 @@
 				</view>
 			</view>
 		</view>
+		<empty :relative="true" v-if="contactsCopy.length === 0" text="暂无相关内容"></empty>
 		<view v-show="!hidden" class="indexToast">{{letter}}</view>
 	</view>
 </template>
@@ -34,6 +35,7 @@
 <script>
 	
 	import pinyin from './components/pinyin/pinyin3.js'
+	import empty from '@/components/empty'
 	import {
 		mapGetters,
 		mapActions,
@@ -41,6 +43,9 @@
 	} from 'vuex'
 	const platform = uni.getSystemInfoSync().platform
 	export default {
+		components: {
+			empty
+		},
 		data() {
 			return {
 				scrollViewId: 'we',

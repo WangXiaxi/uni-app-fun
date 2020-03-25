@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<image class="bg" mode="aspectFill" src="../../../static/bj-phone.png"></image>
+		<image class="bg" mode="aspectFill" src="../../static/bj-phone.png"></image>
 		<view class="iphone-box">
 			<view class="o" v-if="detail.name !== detail.phone">{{detail.name}}</view>
 			<view class="o">{{detail.phone}}</view>
@@ -8,7 +8,7 @@
 			<view class="dex">请注意接听电话</view>
 		</view>
 		<view class="btn-red">
-			<image @click="goback()" class="phone_main act" src="../../../static/icon/phone_main.png"></image>
+			<image @click="goback()" class="phone_main act" src="../../static/phone_main.png"></image>
 		</view>
 	</view>
 </template>

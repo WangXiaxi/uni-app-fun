@@ -1,13 +1,13 @@
 <template>
 	<view class="content">
 		<view class="top">
-			<image class="header" src="../../../static/gywm.png"></image>
+			<image class="header" src="../../static/gywm2.png"></image>
 			<view class="name">{{params.name}}</view>
 		</view>
 		<view class="list">
 			<view class="item" v-for="(item, index) in params.children" :key="index" @click="dial(item)">
 				<view class="text">{{item}}</view>
-				<image src="../../../static/bohao.png"></image>
+				<image src="../../static/bohao.png"></image>
 			</view>
 		</view>
 	</view>

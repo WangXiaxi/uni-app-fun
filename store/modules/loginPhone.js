@@ -6,6 +6,7 @@
  */
 import phoneModel from '../../api/phone.js'
 import pinyin from '../../pages/news/components/pinyin/pinyin3.js'
+const platform = uni.getSystemInfoSync().platform
 
 const login = {
 	state: {

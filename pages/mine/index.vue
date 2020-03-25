@@ -1,23 +1,165 @@
 <template>
 	<view class="content">
+		<view class="bg"></view>
+		<view class="base-info">
+			<view class="header">
+				<image src="../../static/gywm2.png"></image>
+			</view>
+			<view class="name">王小星笑声</view>
+			<view class="account">余额：￥0</view>
+			<view class="time">
+				<image src="../../static/date.png"></image>
+				<text>2019-08-29 到期</text>
+			</view>
+		</view>
+
+		<view class="list">
+			<view class="item border-b pb">
+				<image class="ico" src="../../static/edit.png"></image>
+				<view class="name">编辑资料</view>
+			</view>
+			<view class="item border-b pb">
+				<image class="ico" src="../../static/bag.png"></image>
+				<view class="name">余额</view>
+			</view>
+			<view class="item border-b pb pt">
+				<image class="ico" src="../../static/pay.png"></image>
+				<view class="name">充值</view>
+			</view>
+			<view class="item border-b pb pt">
+				<image class="ico" src="../../static/help.png"></image>
+				<view class="name">帮助中心</view>
+			</view>
+			<view class="item pt">
+				<image class="ico" src="../../static/pass.png"></image>
+				<view class="name">修改密码</view>
+			</view>
+			<view class="item pt">
+				<image class="ico" src="../../static/out.png"></image>
+				<view class="name">退出</view>
+			</view>
+		</view>
+
 	</view>
 </template>
 
 <script>
 	export default {
 		data() {
-			return {
-			}
+			return {}
 		},
 		onLoad() {
 
 		},
-		methods: {
-
-		}
+		methods: {}
 	}
 </script>
 
 <style lang="scss">
+	.content {
+		padding-top: 132rpx;
+	}
 
+	.base-info {
+		width: 458rpx;
+		height: 308rpx;
+		background: rgba(255, 255, 255, 0.15);
+		border-radius: 24rpx;
+		margin: 0 auto;
+		position: relative;
+
+		.header {
+			width: 110rpx;
+			height: 110rpx;
+			border-radius: 50%;
+			border: 4rpx solid #FFFFFF;
+			margin: 0 auto;
+
+			image {
+				width: 102rpx;
+				height: 102rpx;
+				display: block;
+			}
+		}
+
+		.name {
+			font-size: 36rpx;
+			line-height: 36rpx;
+			margin-top: 32rpx;
+			color: #FFFFFF;
+			text-align: center;
+		}
+
+		.account {
+			margin-top: 24rpx;
+			font-size: 28rpx;
+			line-height: 28rpx;
+			text-align: center;
+			color: #FFFFFF;
+		}
+
+		.time {
+			width: 356rpx;
+			height: 84rpx;
+			border-radius: 42rpx;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 30rpx;
+			color: #083999;
+			background: #FFFFFF;
+			position: absolute;
+			left: 50%;
+			margin-left: -178rpx;
+			bottom: -42rpx;
+
+			image {
+				display: block;
+				width: 32rpx;
+				height: 30rpx;
+				margin-right: 19rpx;
+			}
+		}
+	}
+	.list {
+		text-align: center;
+		font-size: 0;
+		margin-top: 174rpx;
+		.item {
+			width: 333rpx;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			display: inline-block;
+			position: relative;
+			&:nth-child(2n+1)::after {
+				position: absolute;
+				content: ' ';
+				height: 100%;
+				width: 4rpx;
+				background-color: rgba(231,233,248,1);
+				top: 0;
+				right: -2rpx;
+			}
+			&.border-b {
+				border-bottom: 4rpx solid rgba(231,233,248,1);
+			}
+			&.pt {
+				padding-top: 45rpx;
+			}
+			&.pb {
+				padding-bottom: 45rpx;
+			}
+			.ico {
+				width: 52rpx;
+				height: 52rpx;
+			}
+			.name {
+				font-size: 28rpx;
+				line-height: 28rpx;
+				margin-top: 42rpx;
+				color: #083999;
+			}
+		}
+	}
 </style>

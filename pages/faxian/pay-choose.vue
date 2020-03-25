@@ -91,10 +91,9 @@
 			}
 		},
 		computed: {
-			...mapGetters(['tokenPhone', 'userInfo', 'params'])
+			...mapGetters(['userInfo', 'params'])
 		},
 		onLoad(options) {
-			this.getTokenPhone()
 			this.item = JSON.parse(JSON.stringify(this.params))
 			const {
 				oilPriceList,
@@ -105,7 +104,6 @@
 			this.choose1(cur, 'param1')
 		},
 		methods: {
-			...mapActions(['getTokenPhone']),
 			goLocation(item) { // 地图
 				uni.openLocation({
 					latitude: Number(item.latitude),
@@ -147,11 +145,6 @@
 			},
 			async confirm() {
 				this.loading = true
-				// const res = await phoneModel.getCallBalance({
-				// 	token: this.tokenPhone
-				// })
-				// this.loading = false
-				// const userId = res.data.json.Info.users.id
 				const mobile = this.userInfo.mobile
 				const {
 					item: {
@@ -176,7 +169,6 @@
 				}).catch(() => {
 					this.loading = false
 				})
-				// this.navTo(`/pages/faxian/search-money?data=${sendData}`)
 			}
 		}
 	}
