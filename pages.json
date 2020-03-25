@@ -1,6 +1,5 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-
 		{
 			"path": "pages/call/index",
 			"style": {
@@ -8,6 +7,27 @@
 				"navigationStyle": "custom"
 			}
 		},
+		{
+			"path": "pages/money/money",
+			"style": {
+				"navigationBarTitleText": "话费充值",
+				"navigationBarBackgroundColor": "#EA1212",
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"titleNView": {
+						"buttons": []
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/public/register",
+			"style": {
+				"navigationBarTitleText": "注册",
+				"navigationStyle": "custom"
+			}
+		},
+		
 		{
 			"path": "pages/mine/index",
 			"style": {
