@@ -1,23 +1,14 @@
 <template>
 	<view class="content">
 		<view class="big-title">最近通话</view>
-		<view class="list">
-			<view class="item">
+		<empty v-if="list.length === 0" text="暂无通话记录"></empty>
+		<view class="list" v-else>
+			<view @click="dial(item.answer)" class="item" :class="{ act: item.status === '未接通' }" v-for="(item, index) in list" :key="index">
 				<view class="info">
-					<view class="name">王小星</view>
+					<view class="name">{{item.answer_name}}</view>
 					<view class="mobile">
-						<view class="tell">15058559592</view>
-						<view class="date">2019-03-04 呼出</view>
-						<image class="trans" src="../../static/arrow-phone.png"></image>
-					</view>
-				</view>
-			</view>
-			<view class="item">
-				<view class="info">
-					<view class="name">王小星</view>
-					<view class="mobile">
-						<view class="tell">15058559592</view>
-						<view class="date">2019-03-04 呼出</view>
+						<view class="tell">{{item.answer}}</view>
+						<view class="date">{{item.time}} 呼出</view>
 						<image class="trans" src="../../static/arrow-phone.png"></image>
 					</view>
 				</view>
@@ -26,16 +17,68 @@
 	</view>
 </template>
 <script>
+	import { mapGetters, mapActions, mapMutations } from 'vuex'
 	import empty from '@/components/empty'
 	import phoneModel from '../../api/phone.js'
 	export default {
 		components: {
 			empty
 		},
-		props: {},
 		data() {
 			return {
 				list: []
+			}
+		},
+		onShow() {
+			if(!this.hasLogin) {
+				uni.navigateTo({
+					url: '/pages/public/login'
+				})
+			} else {
+				this.getLogData()
+			}
+		},
+		onLoad() {
+			this.initContacts()
+		},
+		computed: {
+			...mapGetters(['hasLogin', 'contacts'])
+		},
+		methods: {
+			...mapActions(['initContacts']),
+			dial(number) { // 拨号操作
+				let cur = null
+				this.contacts.forEach(c => {
+					c.contacts.forEach(j => {
+						j.children.forEach(k => {
+							if (k === number) {
+								cur = { name: j.name, phone: number }
+							}
+						})
+						
+					})
+				})
+				if (cur) {
+					const { name, phone } = cur
+					uni.navigateTo({
+						url: `/pages/contacts-ring/index?name=${name}&phone=${phone}`
+					})
+				} else {
+					uni.navigateTo({
+						url: `/pages/contacts-ring/index?name=${number}&phone=${number}`
+					})
+				}
+			},
+			getLogData() {
+				const {
+					mobile
+				} = uni.getStorageSync('userInfo')
+				phoneModel.getCallLog({ mobile }).then(res => {
+					this.list = res.data.map(c => {
+						c.time = c.time.slice(5, 19)
+						return c
+					})
+				})
 			}
 		}
 	}
