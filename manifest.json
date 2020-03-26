@@ -1,7 +1,7 @@
 {
-    "name" : "忆杭网",
-    "appid" : "__UNI__2183006",
-    "description" : "浙江依杭网络科技有限公司旗下商城app",
+    "name" : "忆杭通",
+    "appid" : "__UNI__B4FA810",
+    "description" : "杭州乐庄游网络科技有限公司旗下app",
     "versionName" : "1.0.0",
     "versionCode" : 100,
     "transformPx" : false,
@@ -17,7 +17,8 @@
         "modules" : {
             "Payment" : {},
             "Contacts" : {},
-            "Maps" : {}
+            "Maps" : {},
+            "Push" : {}
         },
         /* 模块配置 */
         "distribute" : {
@@ -151,7 +152,7 @@
                 }
             }
         },
-        "title" : "忆杭网",
+        "title" : "忆杭通",
         "router" : {
             "mode" : "history"
         },
