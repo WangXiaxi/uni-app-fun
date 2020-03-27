@@ -1,6 +1,13 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/public/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/call/index",
 			"style": {
 				"navigationBarTitleText": "拨号",
@@ -27,12 +34,25 @@
 				"navigationStyle": "custom"
 			}
 		},
-		
+
 		{
 			"path": "pages/mine/index",
 			"style": {
 				"navigationBarTitleText": "我的",
 				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/faxian/pay-choose",
+			"style": {
+				"navigationBarTitleText": "加油优惠"
+			}
+		},
+
+		{
+			"path": "pages/faxian/pay",
+			"style": {
+				"navigationBarTitleText": "加油支付"
 			}
 		},
 		{
@@ -79,13 +99,15 @@
 					}
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/contacts-detail/index",
 			"style": {
 				"navigationBarTitleText": "联系人详情",
 				"navigationBarBackgroundColor": "#F7F7F7"
 			}
-		}, {
+		},
+		{
 			"path": "pages/contacts-ring/index",
 			"style": {
 				"titleNView": false

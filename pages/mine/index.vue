@@ -1,6 +1,8 @@
 <template>
 	<view class="content">
-		<view class="bg"></view>
+		<view class="bg">
+			<image src="../../static/bg-mine.png"></image>
+		</view>
 		<view class="base-info">
 			<view class="header">
 				<image src="../../static/gywm2.png"></image>
@@ -58,8 +60,19 @@
 <style lang="scss">
 	.content {
 		padding-top: 132rpx;
+		padding: relative;
 	}
-
+	.bg {
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: -1;
+		image {
+			display: block;
+			width: 750rpx;
+			height: 575rpx;
+		}
+	}
 	.base-info {
 		width: 458rpx;
 		height: 308rpx;

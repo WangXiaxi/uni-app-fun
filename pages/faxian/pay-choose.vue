@@ -63,8 +63,8 @@
 		mapActions,
 		mapMutations
 	} from 'vuex';
-	import phoneModel from '../../api/phone/index.js'
-	import faxianModel from '@/api/faxian/index.js'
+	import phoneModel from '../../api/phone.js'
+	import faxianModel from '@/api/faxian.js'
 
 	const fields = {
 		param1: '', // 油耗
