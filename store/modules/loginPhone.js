@@ -10,18 +10,12 @@ const platform = uni.getSystemInfoSync().platform
 
 const login = {
 	state: {
-		tokenPhone: '',
-		isLoginPhone: false,
 		contacts: []
 	},
 	getters: {
-		tokenPhone:  state => state.tokenPhone,
 		contacts:  state => state.contacts
 	},
 	mutations: {
-		setTokenPhone(state, data) {
-			state.tokenPhone = data
-		},
 		setContacts(state, data) {
 			state.contacts = data
 		}
@@ -106,21 +100,6 @@ const login = {
 				mobile
 			})
 			this.isLoginPhone = true
-		},
-		// 注册并登陆 phone
-		getTokenPhone({
-			commit
-		}) { // 注册并登陆手机
-			commit('setTokenPhone', '')
-			const {
-				mobile
-			} = uni.getStorageSync('userInfo')
-			return phoneModel.getCallToken({
-				mobile
-			}).then(res => {
-				commit('setTokenPhone', res.data.data)
-				return res
-			})
 		}
 	}
 }

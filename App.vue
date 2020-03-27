@@ -120,4 +120,13 @@
 	video {
 		box-sizing: border-box;
 	}
+	/* button样式改写 */
+	uni-button,
+	button {
+		font-weight: normal;
+		&.no-border:before,
+		&.no-border:after {
+			border: 0;
+		}
+	}
 </style>

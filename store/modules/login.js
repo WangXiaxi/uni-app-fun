@@ -36,11 +36,6 @@ const login = {
 			state.userInfo = {}
 			uni.removeStorageSync('userInfo')
 			uni.removeStorageSync('token')
-		},
-		setUserInfo(state, data) {
-			const datas = JSON.parse(JSON.stringify(data))
-			state.userInfo = datas
-			uni.setStorageSync('userInfo', datas) // 缓存用户
 		}
 	},
 	actions: {
@@ -54,10 +49,7 @@ const login = {
 			}
 		},
 		getUserInfo({ commit }) { // 获取用户信息
-			return mineModel.getMemberInfo().then(res => {
-				commit('setUserInfo', res.data)
-				return res
-			})
+			
 		}
 	}
 }
