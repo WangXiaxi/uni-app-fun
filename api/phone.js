@@ -14,7 +14,10 @@ class PhoneModel extends Request {
 			noMessage: true
 		})
 	}
-	
+	// 获取验证码接口
+	getCallCode(params) {
+		return this.get('/service/getCallCode', params)
+	}
 	// 登录
 	loginCall(params) {
 		return this.post('/service/loginCall', params)

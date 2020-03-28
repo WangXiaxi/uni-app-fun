@@ -129,4 +129,24 @@
 			border: 0;
 		}
 	}
+	.back-btn {
+		position: absolute;
+		left: 40upx;
+		z-index: 9999;
+		top: 70upx;
+		color: #FFFFFF;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		.text {
+			font-size: 32rpx;
+			line-height: 32rpx;
+			color: #FFFFFF;
+		}
+		.ico {
+			width: 36rpx;
+			height: 36rpx;
+			margin-right: 4rpx;
+		}
+	}
 </style>

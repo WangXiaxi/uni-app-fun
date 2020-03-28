@@ -1,99 +1,87 @@
 <template>
 	<view class="content">
-		<view class="title">手机快捷绑定</view>
-		<view class="mobile-input input">
-			<input maxlength="11" type="number" v-model.trim="formData.mobile" class="uni-input" name="mobile" placeholder="请输入手机号"
-			 placeholder-class="placeholder" />
-			<view v-if="show" class="send-code" :class="{ grey: sendLoading }" @click="sendMobile">获取验证码</view>
-			<view v-else class="send-code grey">重新获取（{{ count }}s）</view>
+		<view class="back-btn" @click="navBack">
+			<image class="ico" src="../../static/back-white.png"></image>
+			<view class="text">返回</view>
 		</view>
-		<view class="code-input input">
-			<input maxlength="6" type="number" v-model.trim="formData.code" class="uni-input" name="code" placeholder="请输入验证码" placeholder-class="placeholder" />
+		<view class="bg">
+			<image src="../../static/bg-mine.png"></image>
 		</view>
-		<button class="phone_btn" @click="submit">
-			<view>绑定</view>
-		</button>
+		<view class="header">
+			<view class="header-box">
+				<image src="../../static/ico-header.png"></image>
+			</view>
+		</view>
+		<view class="center">
+			<view class="title">注册</view>
+			<view class="item">
+				<image class="left-ico" src="../../static/name.png"></image>
+				<input type="text" v-model.trim="formData.mobile" class="" name="mobile" placeholder="请输入手机号" placeholder-class="placeholder" />
+			</view>
+			<view class="item">
+				<image class="left-ico" src="../../static/password.png"></image>
+				<input type="password" v-model.trim="formData.password" class="" name="password" placeholder="请输入密码"
+				 placeholder-class="placeholder" />
+			</view>
+			
+			<view class="item">
+				<image class="left-ico" src="../../static/code.png"></image>
+				<input type="text" v-model.trim="formData.code" class="" name="code" placeholder="请输入验证码" placeholder-class="placeholder" />
+				<view v-if="show" class="send-code" :class="{ grey: sendLoading }" @click="sendMobile">获取验证码</view>
+				<view v-else class="send-code grey">重新获取（{{ count }}s）</view>
+			</view>
+			
+			<button type="primary" class="no-border confirm-btn" @click="confirm" :loading="loading" :disabled="loading">立即注册</button>
+		</view>
+		<view class="bot-text">© 2020 杭州义杭网络科技有限公司</view>
 	</view>
 </template>
 
 <script>
-	import validate from '@/utils/validate.js'
-	import {
-		register,
-		sendMsg
-	} from '@/api/phone.js'
-
-	const fields = {
-		mobile: '',
-		code: ''
-	}
+	import phoneModel from '../../api/phone.js'
+	
 	export default {
-		components: {
-		},
 		data() {
 			return {
+				loading: false,
 				sendLoading: false,
 				show: true,
 				timer: null,
 				count: 0,
-				formData: JSON.parse(JSON.stringify(fields)),
+				formData: {
+					password: '', // 密码
+					mobile: '', // 用户名
+					code: ''
+				},
 				rules: {
+					code: {
+						required: true,
+						minlength: 4
+					},
 					mobile: {
 						required: true,
 						tel: true
 					},
-					field: {
-						required: true
-					},
-					code: {
+					password: {
 						required: true,
-						minlength: 6,
-						maxlength: 6
+						minlength: 6
 					}
 				},
 				messages: {
-					field: {
-						required: '请先获取短信验证码！'
+					code: {
+						required: '请输入短信验证码！'
 					},
 					mobile: {
-						required: '请输入手机号！'
+						required: '请输入手机号码！'
 					},
-					code: {
-						required: '请输入6位短信验证码！',
-						minlength: '请输入6位短信验证码！',
-						maxlength: '请输入6位短信验证码！'
+					password: {
+						required: '请输入密码！',
+						minlength: '密码不能低于6位！'
 					}
 				}
 			}
 		},
 		methods: {
-			submit() { // 提交操作
-				const {
-					rules,
-					messages,
-					formData: {
-						mobile,
-						code
-					}
-				} = this
-				const validates = new validate(rules, messages)
-				const valid = validates.checkForm({
-					mobile,
-					code
-				})
-				if (!valid) return
-				const sendData = {
-					phone: mobile
-				}
-				uni.showLoading({
-					title: '加载中',
-					mask: true
-				})
-				bind(sendData).then(async res => {
-					
-				}).catch(e => {
-				})
-			},
 			sendMobile() { // 发送验证码
 				if (this.sendLoading) return
 				const {
@@ -103,21 +91,13 @@
 						mobile
 					}
 				} = this
-				const validates = new validate({
+				phoneModel.initValidate({
 					mobile: rules.mobile
 				}, messages)
-				const valid = validates.checkForm({
-					mobile
-				})
-				if (!valid) return
+				if (!phoneModel.WxValidate.checkForm({ mobile })) return
 				this.sendLoading = true
-				sendMsg({ type: 0, phone: mobile }).then(res => {
-					uni.setStorageSync('field', res.data)
-					uni.showToast({
-						title: '短信发送成功！',
-						duration: 1500,
-						icon: 'none'
-					})
+				phoneModel.getCallCode({ mobile }).then(res => {
+					this.$api.msg('短信发送成功！')
 					this.sendLoading = false
 					const TIME_COUNT = 60
 					if (!this.timer) {
@@ -136,56 +116,180 @@
 				}).catch(() => {
 					this.sendLoading = false
 				})
+			},
+			confirm() { // 确定操作
+				const {
+					formData,
+					rules,
+					messages,
+					loading
+				} = this
+				phoneModel.initValidate(rules, messages)
+				if (!phoneModel.WxValidate.checkForm(formData)) return
+				this.loading = true
+				phoneModel.register(formData).then(async result => {
+					Object.assign(formData, {
+						mobile : '',
+						password: '',
+						code: ''
+					})
+					await this.login(result.data)
+					this.loading = false
+					uni.switchTab({
+						url: '../mine/index'
+					})
+					}).catch(() => {
+						this.loading = false
+					})
 			}
 		}
 	}
 </script>
 
 <style lang="scss">
+	page {}
 	.content {
-		background: #FFFFFF;
-
-		.title {
-			font-size: 48rpx;
-			line-height: 67rpx;
-			color: #333333;
-			margin: 62rpx 32rpx 50rpx;
+		padding-top: 148rpx;
+		padding: relative;
+	}
+	.send-code {
+		font-size: 28rpx;
+		color: #083999;
+		padding: 10rpx 20rpx;
+		&.grey {
+			color: #999999;
 		}
+	}
+	.bg {
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 0;
 
-		.input {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			width: 686rpx;
-			position: relative;
-			height: 104rpx;
-			border-bottom: 1rpx solid #EEEEEE;
-			margin: 0 auto;
-
-			.uni-input {
-				flex: 1;
-			}
-
-			.send-code {
-				font-size: 28rpx;
-				color: #333333;
-
-				&.grey {
-					color: #999999;
-				}
-			}
+		image {
+			display: block;
+			width: 750rpx;
+			height: 575rpx;
 		}
+	}
 
-		.phone_btn {
-			background: #1AAD19;
+	.header {
+		position: relative;
+		z-index: 10;
+		width: 160rpx;
+		height: 160rpx;
+		overflow: hidden;
+		border: 8rpx solid rgba(255, 255, 255, 0.3);
+		border-radius: 50%;
+		margin: 0 auto 0;
+
+		.header-box {
+			width: 100%;
+			height: 100%;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			margin: 60rpx 32rpx 0;
-			font-size: 36rpx;
-			height: 90rpx;
-			border-radius: 6rpx;
+			background: #FFFFFF;
+		}
+
+		image {
+			width: 75rpx;
+			height: 110rpx;
+		}
+	}
+
+	.center {
+		position: relative;
+		z-index: 1;
+		width: 686rpx;
+		height: 762rpx;
+		background: #FFFFFF;
+		margin: 76rpx auto 0;
+		box-shadow: 0px 23rpx 177rpx 0px rgba(116, 116, 116, 0.3);
+		border-radius: 24rpx;
+
+		.title {
+			font-size: 52rpx;
+			font-weight: 500;
+			color: rgba(38, 38, 38, 1);
+			text-align: center;
+			line-height: 52rpx;
+			padding-top: 60rpx;
+			margin-bottom: 56rpx;
+		}
+
+		.item {
+			margin: 0 auto;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 626rpx;
+			height: 88rpx;
+			border-bottom: 1rpx solid #F2F2F2;
+			& + .item {
+				margin-top: 26rpx;
+			}
+			.left-ico {
+				width: 50rpx;
+				height: 50rpx;
+				margin-right: 20rpx;
+			}
+
+			input {
+				flex: 1;
+				font-size: 28rpx;
+			}
+		}
+	}
+
+	.bot-text {
+		position: fixed;
+		bottom: 36rpx;
+		text-align: center;
+		width: 100%;
+		text-align: center;
+		font-size: 20rpx;
+		color: rgba(51, 51, 51, 1);
+		line-height: 20rpx;
+		opacity: 0.55;
+	}
+
+	.text-btn-box {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 626rpx;
+		margin: 20rpx auto 0;
+		.text-btn {
+			font-size: 28rpx;
+			line-height: 28rpx;
+			padding: 10rpx;
+			margin-left: -10rpx;
+			margin-right: -10rpx;
+			color: #999999;
+			&.blue {
+				color: #083998;
+			}
+		}
+	}
+
+	.confirm-btn {
+		padding: 0 38upx;
+		margin: 60rpx auto 0;
+		border-radius: 100px;
+		height: 96rpx;
+		width: 626rpx;
+		font-size: 36rpx;
+		background: linear-gradient(-90deg, rgba(137, 175, 249, 1), rgba(8, 57, 153, 1));
+		box-shadow: 0px 16px 64px 6px rgba(2, 85, 196, 0.3);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		
+		&[disabled] {
+			background: linear-gradient(-90deg, rgba(137, 175, 249, 1), rgba(8, 57, 153, 1));
 			color: #FFFFFF;
+			opacity: 0.6;
 		}
 	}
 </style>

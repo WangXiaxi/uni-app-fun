@@ -1,8 +1,8 @@
 <template>
 	<view class="content">
 		<view class="back-btn" @click="navBack">
-			<image src="../../static/back-white.png"></image>
-			<view>返回</view>
+			<image class="ico" src="../../static/back-white.png"></image>
+			<view class="text">返回</view>
 		</view>
 		<view class="bg">
 			<image src="../../static/bg-mine.png"></image>
@@ -16,7 +16,7 @@
 			<view class="title">Hi~</view>
 			<view class="item">
 				<image class="left-ico" src="../../static/name.png"></image>
-				<input type="text" v-model.trim="formData.username" class="" name="username" placeholder="请输入用户名" placeholder-class="placeholder" />
+				<input type="text" v-model.trim="formData.mobile" class="" name="mobile" placeholder="请输入手机号" placeholder-class="placeholder" />
 			</view>
 			<view class="item">
 				<image class="left-ico" src="../../static/password.png"></image>
@@ -27,24 +27,72 @@
 				<view class="text-btn blue">立即注册</view>
 				<view class="text-btn">忘记密码</view>
 			</view>
-			<button type="primary" class="no-border confirm-btn" @click="confirm" :loading="btnLoading" :disabled="btnLoading">登录</button>
+			<button type="primary" class="no-border confirm-btn" @click="confirm" :loading="loading" :disabled="loading">登录</button>
 		</view>
 		<view class="bot-text">© 2020 杭州义杭网络科技有限公司</view>
 	</view>
 </template>
 
 <script>
+	import phoneModel from '../../api/phone.js'
+	
 	export default {
 		data() {
 			return {
+				loading: false,
 				formData: {
-					password: '',
-					name: ''
+					password: '', // 密码
+					mobile: '' // 用户名
+				},
+				rules: {
+					mobile: {
+						required: true,
+						tel: true
+					},
+					password: {
+						required: true,
+						minlength: 6
+					}
+				},
+				messages: {
+					mobile: {
+						required: '请输入手机号码！'
+					},
+					password: {
+						required: '请输入密码！',
+						minlength: '密码不能低于6位！'
+					}
 				}
 			}
 		},
 		methods: {
 			confirm() { // 确定操作
+				const {
+					formData,
+					rules,
+					messages,
+					loading
+				} = this
+				phoneModel.initValidate(rules, messages)
+				if (!phoneModel.WxValidate.checkForm(formData)) return
+				this.loading = true
+				phoneModel.loginCall(formData).then(async result => {
+					Object.assign(formData, {
+						mobile : '',
+						password: ''
+					})
+					await this.login(result.data)
+					this.loading = false
+					if (this.$api.prePage()) {
+						uni.navigateBack()
+					} else {
+						uni.switchTab({
+							url: '../mine/index'
+						})
+					}
+					}).catch(() => {
+						this.loading = false
+					})
 			}
 		}
 	}
@@ -52,14 +100,6 @@
 
 <style lang="scss">
 	page {}
-	.back-btn {
-		position: absolute;
-		left: 40upx;
-		z-index: 9999;
-		top: 40upx;
-		font-size: 40upx;
-		color: #FFFFFF;
-	}
 	.content {
 		padding-top: 148rpx;
 		padding: relative;
@@ -142,6 +182,7 @@
 
 			input {
 				flex: 1;
+				font-size: 28rpx;
 			}
 		}
 	}
