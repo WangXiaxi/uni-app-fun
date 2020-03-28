@@ -32,6 +32,8 @@
 			</view>
 			
 			<button type="primary" class="no-border confirm-btn" @click="confirm" :loading="loading" :disabled="loading">立即注册</button>
+			
+			<view class="btn-text">返回登录</view>
 		</view>
 		<view class="bot-text">© 2020 杭州义杭网络科技有限公司</view>
 	</view>
@@ -82,6 +84,9 @@
 			}
 		},
 		methods: {
+			navBack() {
+				uni.navigateBack()
+			},
 			sendMobile() { // 发送验证码
 				if (this.sendLoading) return
 				const {
@@ -148,6 +153,17 @@
 
 <style lang="scss">
 	page {}
+	.btn-text {
+		font-size: 28rpx;
+		line-height: 28rpx;
+		padding: 10rpx;
+		color: #083998;
+		margin: 0 auto;
+		padding: 20rpx;
+		width: 160rpx;
+		text-align: center;
+		margin-top: 20rpx;
+	}
 	.content {
 		padding-top: 148rpx;
 		padding: relative;

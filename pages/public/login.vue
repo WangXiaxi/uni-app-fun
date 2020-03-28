@@ -66,6 +66,9 @@
 			}
 		},
 		methods: {
+			navBack() {
+				uni.navigateBack()
+			},
 			confirm() { // 确定操作
 				const {
 					formData,
