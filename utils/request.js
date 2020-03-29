@@ -88,6 +88,7 @@ export default class Request {
 			let next = true
 			let _config = null
 			options.complete = (response) => {
+				console.log(response)
 				let statusCode = response.statusCode
 				let data = response.data
 				response.config = _config
@@ -111,9 +112,8 @@ export default class Request {
 						case 'token30401':
 							// 清空数据并跳转至登陆页
 							store.commit('logout')
-							store.commit('clearOut')
 							if (!options.noredirect) uni.switchTab({
-								url: '/pages/user/user'
+								url: '/pages/mine/index'
 							})
 							reject(response)
 							break

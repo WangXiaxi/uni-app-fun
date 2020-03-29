@@ -7,11 +7,13 @@
 			<view class="header">
 				<image src="../../static/gywm2.png"></image>
 			</view>
-			<view class="name">王小星笑声</view>
+			<view class="name" v-if="hasLogin">wang xiaoxinf</view>
+			<view class="name" v-if="!hasLogin">游客您好，请点击登录</view>
 			<view class="account">余额：￥0</view>
 			<view class="time">
 				<image src="../../static/date.png"></image>
-				<text>2019-08-29 到期</text>
+				<text v-if="hasLogin">2019-08-29 到期</text>
+				<text v-else>--</text>
 			</view>
 		</view>
 
@@ -20,7 +22,7 @@
 				<image class="ico" src="../../static/edit.png"></image>
 				<view class="name">编辑资料</view>
 			</view>
-			<view class="item border-b pb">
+			<view class="item border-b pb" @click="navTo('/pages/money/money')">
 				<image class="ico" src="../../static/bag.png"></image>
 				<view class="name">余额</view>
 			</view>
@@ -32,7 +34,7 @@
 				<image class="ico" src="../../static/help.png"></image>
 				<view class="name">帮助中心</view>
 			</view>
-			<view class="item pt">
+			<view class="item pt" @click="navTo('/pages/public/landPass')">
 				<image class="ico" src="../../static/pass.png"></image>
 				<view class="name">修改密码</view>
 			</view>
@@ -46,6 +48,11 @@
 </template>
 
 <script>
+	import {
+		mapGetters,
+		mapActions,
+		mapMutations
+	} from 'vuex'
 	export default {
 		data() {
 			return {}
@@ -53,7 +60,23 @@
 		onLoad() {
 
 		},
-		methods: {}
+		computed: {
+			...mapGetters(['hasLogin'])
+		},
+		methods: {
+			/**
+			 * 统一跳转接口,拦截未登录路由
+			 * navigator标签现在默认没有转场动画，所以用view
+			 */
+			navTo(url, type = true) {
+				// if (!this.hasLogin && type) {
+				// 	url = '/pages/public/login';
+				// }
+				uni.navigateTo({
+					url
+				})
+			}
+		}
 	}
 </script>
 
@@ -87,7 +110,9 @@
 			border-radius: 50%;
 			border: 4rpx solid #FFFFFF;
 			margin: 0 auto;
-
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			image {
 				width: 102rpx;
 				height: 102rpx;

@@ -35,7 +35,11 @@
 
 <script>
 	import phoneModel from '../../api/phone.js'
-	
+	import {
+		mapGetters,
+		mapActions,
+		mapMutations
+	} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -65,7 +69,10 @@
 				}
 			}
 		},
+		computed: {
+		},
 		methods: {
+			...mapMutations(['login']),
 			navBack() {
 				uni.navigateBack()
 			},
@@ -80,10 +87,12 @@
 				if (!phoneModel.WxValidate.checkForm(formData)) return
 				this.loading = true
 				phoneModel.loginCall(formData).then(async result => {
+					console.log(1234)
 					Object.assign(formData, {
 						mobile : '',
 						password: ''
 					})
+					console.log(result)
 					await this.login(result.data)
 					this.loading = false
 					if (this.$api.prePage()) {

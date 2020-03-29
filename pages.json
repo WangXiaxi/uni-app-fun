@@ -1,6 +1,19 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/call/index",
+			"style": {
+				"navigationBarTitleText": "拨号",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/public/landPass",
+			"style": {
+				"navigationBarTitleText": "修改登陆密码"
+			}
+		},
+		{
 			"path": "pages/public/register",
 			"style": {
 				"navigationBarTitleText": "注册",
@@ -14,13 +27,7 @@
 				"navigationStyle": "custom"
 			}
 		},
-		{
-			"path": "pages/call/index",
-			"style": {
-				"navigationBarTitleText": "拨号",
-				"navigationStyle": "custom"
-			}
-		},
+
 		{
 			"path": "pages/money/money",
 			"style": {

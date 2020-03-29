@@ -10,10 +10,10 @@
 					<view class="ri">国标价 ￥{{item.priceOfficialSearch}}</view>
 				</view>
 				<view class="location">
-					<image class="loc-img" src="../../static/icon/location.png"></image>
+					<image class="loc-img" src="../../static/location.png"></image>
 					<view class="text">{{item.address}}</view>
 					<view class="lo-ico" @click.stop="goLocation(item)">
-						<image class="ico" src="../../static/icon/ships.png"></image>
+						<image class="ico" src="../../static/ships.png"></image>
 						<view class="m">{{item.distanceStr}}km</view>
 					</view>
 				</view>
@@ -155,7 +155,7 @@
 						param2: gunNo
 					}
 				} = this
-		
+
 				const sendData = {
 					parentid: '58162318-deca-4442-8e38-743b7729aa5b',
 					mobile,
@@ -263,7 +263,8 @@
 
 				.lo-ico {
 					margin-left: -140rpx;
-					background: #EA1212;
+					background: #083999;
+					opacity: 0.8;
 					border-radius: 40rpx;
 					width: 280rpx;
 					height: 80rpx;
@@ -321,8 +322,9 @@
 				align-items: center;
 				justify-content: center;
 				font-size: 28upx;
-				color: #666;
-				border: 1upx solid #ddd;
+				color: #083999;
+				border: 1upx solid #083999;
+				opacity: .6;
 
 				&:nth-of-type(3n + 1) {
 					margin-left: 0;
@@ -330,6 +332,7 @@
 			}
 
 			.item.act {
+				opacity: 1;
 				border-color: $base-color;
 				color: $base-color;
 				position: relative;
@@ -404,5 +407,19 @@
 		margin: 30upx 32upx 0;
 		text-align: center;
 		padding-bottom: 40upx;
+	}
+
+	.add-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 690upx;
+		height: 80upx;
+		margin: 60upx auto 20upx;
+		font-size: $font-lg;
+		color: #fff;
+		background: #083999;
+		border-radius: 10upx;
+		box-shadow: 1px 2px 5px rgba(8, 57, 153, 0.4);
 	}
 </style>

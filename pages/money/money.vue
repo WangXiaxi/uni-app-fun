@@ -77,6 +77,7 @@
 		},
 		methods: {
 			loadData() {
+				return
 				this.pageLoading = true
 				phoneModel.getCallBalance({
 					token: this.tokenPhone
@@ -235,8 +236,8 @@
 		margin: 60upx auto 20upx;
 		font-size: $font-lg;
 		color: #fff;
-		background-color: $base-color;
+		background: #083999;
 		border-radius: 10upx;
-		box-shadow: 1px 2px 5px rgba(219, 63, 96, 0.4);
+		box-shadow: 1px 2px 5px rgba(8, 57, 153, 0.4);
 	}
 </style>

@@ -30,15 +30,16 @@
 			}
 		},
 		onShow() {
-			if(!this.hasLogin) {
-				uni.navigateTo({
-					url: '/pages/public/login'
-				})
-			} else {
+			if(this.hasLogin) {
 				this.getLogData()
 			}
 		},
 		onLoad() {
+			if(!this.hasLogin) {
+				uni.navigateTo({
+					url: '/pages/public/login'
+				})
+			}
 			this.initContacts()
 		},
 		computed: {
@@ -94,6 +95,8 @@
 		line-height: 48rpx;
 		color: #111111;
 		padding-left: 31rpx;
+		position: relative;
+		z-index: 100;
 	}
 
 	.list {
