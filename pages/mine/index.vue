@@ -3,11 +3,11 @@
 		<view class="bg">
 			<image src="../../static/bg-mine.png"></image>
 		</view>
-		<view class="base-info">
+		<view class="base-info" @click="baseClick">
 			<view class="header">
 				<image src="../../static/gywm2.png"></image>
 			</view>
-			<view class="name" v-if="hasLogin">wang xiaoxinf</view>
+			<view class="name" v-if="hasLogin">{{userInfo.realname || userInfo.mobile}}</view>
 			<view class="name" v-if="!hasLogin">游客您好，请点击登录</view>
 			<view class="account">余额：￥0</view>
 			<view class="time">
@@ -61,9 +61,17 @@
 
 		},
 		computed: {
-			...mapGetters(['hasLogin'])
+			...mapGetters(['hasLogin', 'userInfo'])
 		},
 		methods: {
+			baseClick() {
+				if (!this.hasLogin) {
+					uni.navigateTo({
+						url: '/pages/public/login'
+					})
+					return
+				}
+			},
 			/**
 			 * 统一跳转接口,拦截未登录路由
 			 * navigator标签现在默认没有转场动画，所以用view
@@ -85,17 +93,20 @@
 		padding-top: 132rpx;
 		padding: relative;
 	}
+
 	.bg {
 		position: absolute;
 		left: 0;
 		top: 0;
 		z-index: -1;
+
 		image {
 			display: block;
 			width: 750rpx;
 			height: 575rpx;
 		}
 	}
+
 	.base-info {
 		width: 458rpx;
 		height: 308rpx;
@@ -113,6 +124,7 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
+
 			image {
 				width: 102rpx;
 				height: 102rpx;
@@ -159,10 +171,12 @@
 			}
 		}
 	}
+
 	.list {
 		text-align: center;
 		font-size: 0;
 		margin-top: 174rpx;
+
 		.item {
 			width: 333rpx;
 			display: flex;
@@ -170,28 +184,34 @@
 			flex-direction: column;
 			display: inline-block;
 			position: relative;
+
 			&:nth-child(2n+1)::after {
 				position: absolute;
 				content: ' ';
 				height: 100%;
 				width: 4rpx;
-				background-color: rgba(231,233,248,1);
+				background-color: rgba(231, 233, 248, 1);
 				top: 0;
 				right: -2rpx;
 			}
+
 			&.border-b {
-				border-bottom: 4rpx solid rgba(231,233,248,1);
+				border-bottom: 4rpx solid rgba(231, 233, 248, 1);
 			}
+
 			&.pt {
 				padding-top: 45rpx;
 			}
+
 			&.pb {
 				padding-bottom: 45rpx;
 			}
+
 			.ico {
 				width: 52rpx;
 				height: 52rpx;
 			}
+
 			.name {
 				font-size: 28rpx;
 				line-height: 28rpx;

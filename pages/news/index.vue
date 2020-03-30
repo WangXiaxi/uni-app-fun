@@ -8,7 +8,8 @@
 		<view class="mobile-list" v-if="contactsCopy.length !== 0">
 			<scroll-view class="contact-scroll" scroll-y :scroll-into-view="scrollViewId">
 				<view class="box" v-for="(item,key) in contacts" :key="key">
-					<view class="divider" :id="`id${item.letter === '#' ? 'xxx' : item.letter}`"> <text class="divider-text">{{item.letter}}</text> </view>
+					<view class="divider" :id="`id${item.letter === '#' ? 'xxx' : item.letter}`"> <text class="divider-text">{{item.letter}}</text>
+					</view>
 					<view class="item" hover-class="hover" :hover-start-time="20" v-for="(contact,index) in item.contacts" :key="index"
 					 @click='onSelectClick(contact)'>
 						<image class="portrait" src="../../static/gywm.png"></image>
@@ -20,7 +21,8 @@
 			<view class="indexBar-bg">
 				<view class="indexBar" catchtouchmove>
 					<view class="indexBar-box" @touchstart="tStart" @touchend="tEnd" @touchmove="tMove">
-						<view class="indexBar-item" v-for="(item, index) in contacts" :key="index" :id="item.letter" @touchstart="getCur" @click="clickT" @touchend="setCur">
+						<view class="indexBar-item" v-for="(item, index) in contacts" :key="index" :id="item.letter" @touchstart="getCur"
+						 @click="clickT" @touchend="setCur">
 							{{item.letter}}
 						</view>
 					</view>
@@ -33,7 +35,6 @@
 </template>
 
 <script>
-	
 	import pinyin from './components/pinyin/pinyin3.js'
 	import empty from '@/components/empty'
 	import {
@@ -60,7 +61,7 @@
 			}
 		},
 		computed: {
-			...mapGetters(['contacts']),
+			...mapGetters(['contacts', 'hasLogin']),
 		},
 		onLoad() {
 			this.initContacts()
@@ -120,10 +121,22 @@
 			},
 
 			onSelectClick: function(contact) {
+				if (!this.hasLogin) {
+					uni.navigateTo({
+						url: '/pages/public/login'
+					})
+					return
+				}
 				this.setParams(contact)
 				this.navTo('/pages/contacts-detail/index')
 			},
 			onSearchInput: function(value) {
+				if (!this.hasLogin) {
+					uni.navigateTo({
+						url: '/pages/public/login'
+					})
+					return
+				}
 				this.setParams(this.contactsCopy)
 				this.navTo('/pages/index-search/index')
 			}
@@ -147,12 +160,14 @@
 	.content {
 		padding-top: 84rpx;
 	}
+
 	.big-title {
 		font-size: 48rpx;
 		line-height: 48rpx;
 		color: #111111;
 		padding-left: 31rpx;
 	}
+
 	.input-search {
 		background: #FFFFFF;
 		padding: 30rpx 24rpx 40rpx;

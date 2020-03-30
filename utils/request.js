@@ -65,7 +65,7 @@ export default class Request {
 	static setPubParams(options = {}) {
 		const token = store.getters.token
 		if (token) Object.assign(options.header, {
-			token
+			// token
 		})
 		const time = new Date().getTime()
 		const sign = `${time}${options.url.split('/service/')[1]}${url_key}`

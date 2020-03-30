@@ -69,10 +69,9 @@
 				}
 			}
 		},
-		computed: {
-		},
+		computed: {},
 		methods: {
-			...mapMutations(['login']),
+			...mapMutations(['login', 'getBalance']),
 			navBack() {
 				uni.navigateBack()
 			},
@@ -86,25 +85,28 @@
 				phoneModel.initValidate(rules, messages)
 				if (!phoneModel.WxValidate.checkForm(formData)) return
 				this.loading = true
-				phoneModel.loginCall(formData).then(async result => {
-					console.log(1234)
+				phoneModel.loginCall(formData).then(result => {
 					Object.assign(formData, {
-						mobile : '',
+						mobile: '',
 						password: ''
 					})
-					console.log(result)
-					await this.login(result.data)
-					this.loading = false
-					if (this.$api.prePage()) {
-						uni.navigateBack()
-					} else {
-						uni.switchTab({
-							url: '../mine/index'
-						})
-					}
-					}).catch(() => {
-						this.loading = false
+					this.login({
+						data: result.data,
+						callback: () => {
+							this.loading = false
+							this.getBalance()
+							if (this.$api.prePage()) {
+								uni.navigateBack()
+							} else {
+								uni.switchTab({
+									url: '../mine/index'
+								})
+							}
+						}
 					})
+				}).catch(() => {
+					this.loading = false
+				})
 			}
 		}
 	}
@@ -112,6 +114,7 @@
 
 <style lang="scss">
 	page {}
+
 	.content {
 		padding-top: 148rpx;
 		padding: relative;
@@ -183,9 +186,11 @@
 			width: 626rpx;
 			height: 88rpx;
 			border-bottom: 1rpx solid #F2F2F2;
-			& + .item {
+
+			&+.item {
 				margin-top: 26rpx;
 			}
+
 			.left-ico {
 				width: 50rpx;
 				height: 50rpx;
@@ -217,6 +222,7 @@
 		align-items: center;
 		width: 626rpx;
 		margin: 20rpx auto 0;
+
 		.text-btn {
 			font-size: 28rpx;
 			line-height: 28rpx;
@@ -224,6 +230,7 @@
 			margin-left: -10rpx;
 			margin-right: -10rpx;
 			color: #999999;
+
 			&.blue {
 				color: #083998;
 			}
@@ -242,7 +249,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		
+
 		&[disabled] {
 			background: linear-gradient(-90deg, rgba(137, 175, 249, 1), rgba(8, 57, 153, 1));
 			color: #FFFFFF;

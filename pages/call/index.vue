@@ -28,7 +28,7 @@
 				<image class="img" src="../../static/dele.png"></image>
 			</view>
 		</view>
-		<view class="btn-call"><image src="../../static/call.png"></image></view>
+		<view class="btn-call" @click="dial"><image src="../../static/call.png"></image></view>
 	</view>
 </template>
 
@@ -46,7 +46,7 @@
 			}
 		},
 		computed: {
-			...mapGetters(['contacts']),
+			...mapGetters(['contacts', 'hasLogin']),
 		},
 		onLoad() {
 			this.initContacts()
@@ -65,6 +65,15 @@
 				})
 			},
 			dial() { // 拨号操作
+				if(!this.hasLogin) {
+					uni.navigateTo({
+						url: '/pages/public/login'
+					})
+					return
+				}
+				if (this.number.length < 5) {
+					return this.$api.msg('输入号码不正确！')
+				}
 				if (this.list[0] && this.list[0].phone === this.number) {
 					const {
 						name,
@@ -105,6 +114,12 @@
 				this.search()
 			},
 			dele(type = null) {
+				if(!this.hasLogin) {
+					uni.navigateTo({
+						url: '/pages/public/login'
+					})
+					return
+				}
 				if (type === 'all') {
 					this.number = ''
 					return

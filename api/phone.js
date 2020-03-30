@@ -10,42 +10,42 @@ import WxValidate from '../utils/validate'
 class PhoneModel extends Request {
 	// 获取通话记录
 	getCallLog(params) {
-		return this.get('/service/getLocalCallLog', params, {
+		return this.get('/service/getLocalCallLog', { ...params, noToken: true }, {
 			noMessage: true
 		})
 	}
 	// 获取验证码接口
 	getCallCode(params) {
-		return this.get('/service/getCallCode', params)
+		return this.get('/service/getCallCode', { ...params, noToken: true })
 	}
 	// 登录
 	loginCall(params) {
-		return this.post('/service/loginCall', params)
+		return this.post('/service/loginCall', { ...params, noToken: true })
 	}
 		
 	// 注册
 	register(params) {
-		return this.post('/service/registerCall', params, {
+		return this.post('/service/registerCall', { ...params, noToken: true }, {
 			noMessage: true
 		})
 	}
 	// 获取token
 	getCallToken(params) {
-		return this.get('/service/getCallToken', params, {
+		return this.get('/service/getCallToken', { ...params, noToken: true }, {
 			noMessage: true
 		})
 	}
 	// 打电话
 	callUser(params) {
-		return this.post('/service/callUser', params)
+		return this.post('/service/callUser', { ...params, noToken: true })
 	}
 	// 充值
 	rechangeCall(params) {
-		return this.post('/service/rechangeCall', params)
+		return this.post('/service/rechangeCall', { ...params, noToken: true })
 	}
 	// getCallBalance
 	getCallBalance(params) {
-		return this.post('/service/getCallBalance', params)
+		return this.post('/service/getCallBalance', { ...params, noToken: true })
 	}
 	/**
 	 * 验证表单

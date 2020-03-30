@@ -18,16 +18,16 @@ class FaxianModel extends Request {
 	}
 	// 获取加油订单
 	getOrderMoney(params) {
-		return this.get('/service/getOrderMoney', { ...params })
+		return this.get('/service/getOrderMoney', { ...params, noToken: true })
 	}
 	// 生成订单
 	generateOrder(params) {
-		return this.post('/service/generateOrder', { ...params })
+		return this.post('/service/generateOrder', { ...params, noToken: true })
 	}
 	// 支付获取
 	recordUserBuy(params) {
 		console.log(params)
-		return this.get('/service/recordUserBuy', { ...params })
+		return this.get('/service/recordUserBuy', { ...params, noToken: true })
 	}
 }
 

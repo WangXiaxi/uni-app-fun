@@ -24,13 +24,13 @@
 			}
 		},
 		computed: {
-			...mapGetters(['tokenPhone', 'userInfo'])
+			...mapGetters(['token', 'userInfo'])
 		},
 		onLoad(options) {
 			this.detail = options
 			const { name, phone } = options
 			const { mobile } = this.userInfo
-			phoneModel.callUser({ answer_name: name, answerer: phone, caller: mobile, token: this.tokenPhone }).then(res => {
+			phoneModel.callUser({ answer_name: name, answerer: phone, caller: mobile, token: this.token }).then(res => {
 			}).catch((e) => {
 				setTimeout(() => {
 					this.goback()
