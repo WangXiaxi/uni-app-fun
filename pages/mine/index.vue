@@ -26,7 +26,7 @@
 				<image class="ico" src="../../static/bag.png"></image>
 				<view class="name">余额</view>
 			</view>
-			<view class="item border-b pb pt">
+			<view class="item border-b pb pt" @click="navTo('/pages/money/invest')">
 				<image class="ico" src="../../static/pay.png"></image>
 				<view class="name">充值</view>
 			</view>

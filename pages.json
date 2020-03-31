@@ -27,7 +27,22 @@
 				"navigationStyle": "custom"
 			}
 		},
-
+		{
+			"path": "pages/money/invest",
+			"style": {
+				"navigationBarTitleText": "充值",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"width": "70px",
+							"text": "充值记录",
+							"fontSize": "15",
+							"color": "#FFFFFF"
+						}]
+					}
+				}
+			}
+		},
 		{
 			"path": "pages/money/money",
 			"style": {
