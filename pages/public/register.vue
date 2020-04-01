@@ -41,7 +41,11 @@
 
 <script>
 	import phoneModel from '../../api/phone.js'
-	
+	import {
+		mapGetters,
+		mapActions,
+		mapMutations
+	} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -83,7 +87,9 @@
 				}
 			}
 		},
+		
 		methods: {
+			...mapMutations(['login', 'getBalance']),
 			navBack() {
 				uni.navigateBack()
 			},
@@ -102,6 +108,7 @@
 				if (!phoneModel.WxValidate.checkForm({ mobile })) return
 				this.sendLoading = true
 				phoneModel.getCallCode({ mobile }).then(res => {
+					this.code = res.data.json
 					this.$api.msg('短信发送成功！')
 					this.sendLoading = false
 					const TIME_COUNT = 60
@@ -127,25 +134,32 @@
 					formData,
 					rules,
 					messages,
-					loading
+					loading,
+					code
 				} = this
 				phoneModel.initValidate(rules, messages)
 				if (!phoneModel.WxValidate.checkForm(formData)) return
+				if (code !== Number(formData.code)) {
+					this.$api.msg('验证码不匹配')
+					return
+				}
 				this.loading = true
 				phoneModel.register(formData).then(async result => {
-					Object.assign(formData, {
-						mobile : '',
-						password: '',
-						code: ''
+					phoneModel.loginCall(formData).then(res => {
+						this.login({
+							data: res.data,
+							callback: () => {
+								this.loading = false
+								this.getBalance()
+								uni.switchTab({
+									url: '../mine/index'
+								})
+							}
+						})
 					})
-					await this.login(result.data)
+				}).catch(() => {
 					this.loading = false
-					uni.switchTab({
-						url: '../mine/index'
-					})
-					}).catch(() => {
-						this.loading = false
-					})
+				})
 			}
 		}
 	}

@@ -5,13 +5,18 @@
 		versionIos,
 		versionAnd,
 	} from './common/config/index.js'
-	
+	import {
+		mapGetters,
+		mapActions,
+		mapMutations
+	} from 'vuex'
 	export default {
 		data() {
 			return {}
 		},
 
 		methods: {
+			...mapMutations(['login', 'getBalance']),
 			AndroidCheckUpdate() { // 安卓跟新
 				var _this = this;
 				mineModel.version({ type: 1 }).then(res => {
@@ -75,6 +80,13 @@
 			}
 		},
 		onLaunch(option) {
+			const userInfoStorage  = uni.getStorageSync('userInfo')
+			console.log(userInfoStorage)
+			if (userInfoStorage) { // 每次重新进入都重新获取token及余额等
+				this.login({ data: { json: userInfoStorage }, callback: () => {
+					this.getBalance()
+				} })
+			}
 			return
 			uni.getSystemInfo({
 				success: (res) => {

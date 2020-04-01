@@ -38,10 +38,10 @@
 						<view class="ri">国标价 ￥{{item.priceOfficialSearch}}</view>
 					</view>
 					<view class="location">
-						<image class="loc-img" src="../../static/location.png"></image>
+						<image class="loc-img" src="../../../../static/location.png"></image>
 						<view class="text">{{item.address}}</view>
 						<view class="lo-ico" @click.stop="goLocation(item)">
-							<image class="ico" src="../../static/ships.png"></image>
+							<image class="ico" src="../../../../static/ships.png"></image>
 							<view class="m">{{item.distanceStr}}km</view>
 						</view>
 					</view>

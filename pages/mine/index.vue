@@ -9,10 +9,10 @@
 			</view>
 			<view class="name" v-if="hasLogin">{{userInfo.realname || userInfo.mobile}}</view>
 			<view class="name" v-if="!hasLogin">游客您好，请点击登录</view>
-			<view class="account">余额：￥0</view>
+			<view class="account">余额：￥{{ balanceInfo.Money | nf }}</view>
 			<view class="time">
 				<image src="../../static/date.png"></image>
-				<text v-if="hasLogin">2019-08-29 到期</text>
+				<text v-if="hasLogin">{{balanceInfo.Time | fill}} 到期</text>
 				<text v-else>--</text>
 			</view>
 		</view>
@@ -61,7 +61,7 @@
 
 		},
 		computed: {
-			...mapGetters(['hasLogin', 'userInfo'])
+			...mapGetters(['hasLogin', 'userInfo', 'balanceInfo'])
 		},
 		methods: {
 			baseClick() {
@@ -77,9 +77,9 @@
 			 * navigator标签现在默认没有转场动画，所以用view
 			 */
 			navTo(url, type = true) {
-				// if (!this.hasLogin && type) {
-				// 	url = '/pages/public/login';
-				// }
+				if (!this.hasLogin && type) {
+					url = '/pages/public/login'
+				}
 				uni.navigateTo({
 					url
 				})

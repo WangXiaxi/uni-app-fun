@@ -10,9 +10,7 @@ import WxValidate from '../utils/validate'
 class PhoneModel extends Request {
 	// 获取通话记录
 	getCallLog(params) {
-		return this.get('/service/getLocalCallLog', { ...params, noToken: true }, {
-			noMessage: true
-		})
+		return this.get('/service/getLocalCallLog', { ...params, noToken: true })
 	}
 	// 获取验证码接口
 	getCallCode(params) {
@@ -25,15 +23,11 @@ class PhoneModel extends Request {
 		
 	// 注册
 	register(params) {
-		return this.post('/service/registerCall', { ...params, noToken: true }, {
-			noMessage: true
-		})
+		return this.post('/service/registerByPass', { ...params, noToken: true })
 	}
 	// 获取token
 	getCallToken(params) {
-		return this.get('/service/getCallToken', { ...params, noToken: true }, {
-			noMessage: true
-		})
+		return this.get('/service/getCallToken', { ...params, noToken: true })
 	}
 	// 打电话
 	callUser(params) {

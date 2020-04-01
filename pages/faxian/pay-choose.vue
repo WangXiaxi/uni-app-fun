@@ -13,7 +13,7 @@
 					<image class="loc-img" src="../../static/location.png"></image>
 					<view class="text">{{item.address}}</view>
 					<view class="lo-ico" @click.stop="goLocation(item)">
-						<image class="ico" src="../../static/ships.png"></image>
+						<image class="ico" src="/static/ships.png"></image>
 						<view class="m">{{item.distanceStr}}km</view>
 					</view>
 				</view>
@@ -43,7 +43,7 @@
 		<!-- 提示 -->
 		<view class="tips">
 			<view class="tit">
-				<image src="../../static/icon/tips.png"></image>重要提示
+				<image src="../../static/tips.png"></image>重要提示
 			</view>
 			<view class="info">
 				请务必<text class="red">先到达油站</text>与工作人员确认后再付款，切勿先买单在加油，避免异常订单的产生。
@@ -418,8 +418,8 @@
 		margin: 60upx auto 20upx;
 		font-size: $font-lg;
 		color: #fff;
-		background: #083999;
+		background-color: $base-color;
 		border-radius: 10upx;
-		box-shadow: 1px 2px 5px rgba(8, 57, 153, 0.4);
+		box-shadow: 1px 2px 5px rgba(219, 63, 96, 0.4);
 	}
 </style>
