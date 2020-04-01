@@ -20,7 +20,10 @@ class PhoneModel extends Request {
 	loginCall(params) {
 		return this.post('/service/loginCall', { ...params, noToken: true })
 	}
-		
+	// 修改密码
+	resetCallPass(params) {
+		return this.post('/service/resetCallPass', { ...params, noToken: true })
+	}	
 	// 注册
 	register(params) {
 		return this.post('/service/registerByPass', { ...params, noToken: true })

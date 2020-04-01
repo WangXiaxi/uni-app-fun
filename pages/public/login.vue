@@ -25,7 +25,7 @@
 			</view>
 			<view class="text-btn-box">
 				<view class="text-btn blue" @click="navTo('/pages/public/register')">立即注册</view>
-				<view class="text-btn">忘记密码</view>
+				<view class="text-btn" @click="navTo('/pages/public/forgetPass')">忘记密码</view>
 			</view>
 			<button type="primary" class="no-border confirm-btn" @click="confirm" :loading="loading" :disabled="loading">登录</button>
 		</view>

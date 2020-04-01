@@ -1,10 +1,6 @@
 <template>
 	<view class="content">
 		<view class="row b-b">
-			<text class="tit">原密码</text>
-			<input class="input" type="password" v-model="formData.oldPassword" placeholder="请输入原密码" placeholder-class="placeholder" />
-		</view>
-		<view class="row b-b">
 			<text class="tit">新密码</text>
 			<input class="input" type="password" v-model="formData.password" placeholder="请输入6-32位新密码" placeholder-class="placeholder" />
 		</view>
@@ -20,18 +16,19 @@
 <script>
 	import phoneModel from '../../api/phone.js'
 	const formFields = {
-		oldPassword: '',
 		password: '', // 新密码
 		rePassword: '', // 原密码
 	}
+	import {
+		mapGetters,
+		mapActions,
+		mapMutations
+	} from 'vuex'
 	export default {
 		data() {
 			return {
 				formData: JSON.parse(JSON.stringify(formFields)),
 				rules: {
-					oldPassword: {
-						required: true
-					},
 					password: {
 						required: true
 					},
@@ -40,9 +37,6 @@
 					}
 				},
 				messages: {
-					oldPassword: {
-						required: '请输入原密码！'
-					},
 					password: {
 						required: '请输入新密码！'
 					},
@@ -53,6 +47,9 @@
 				loading: false
 			}
 		},
+		computed: {
+			...mapGetters(['token'])
+		},
 		methods: {
 			navTo(url){
 				uni.navigateTo({  
@@ -62,7 +59,6 @@
 			confirm() {
 				const {
 					formData: {
-						oldPassword,
 						password,
 						rePassword
 					},
@@ -70,18 +66,19 @@
 					messages
 				} = this
 				const sendData = {
-					oldPassword,
 					password,
-					rePassword,
-					changeType: 'password' // 提现密码修改
+					rePassword
 				}
 				if (password !== rePassword) return this.$api.msg('两次密码输入不一致！')
-				loginModel.initValidate(rules, messages)
-				if (!loginModel.WxValidate.checkForm(sendData)) return
+				phoneModel.initValidate(rules, messages)
+				if (!phoneModel.WxValidate.checkForm(sendData)) return
 				this.loading = true
-				loginModel.changePassword(sendData).then(() => {
+				phoneModel.changePassword({
+					token: this.token,
+					newPass: sendData.password
+				}).then(() => {
 					this.loading = false
-					this.$api.msg('登陆密码修改成功！', 1500, false, 'success')
+					this.$api.msg('登陆密码修改成功！', 1500, true, 'success')
 					setTimeout(() => {
 						uni.navigateBack({
 							delta: 1

@@ -38,7 +38,7 @@
 				<image class="ico" src="../../static/pass.png"></image>
 				<view class="name">修改密码</view>
 			</view>
-			<view class="item pt">
+			<view class="item pt" @click="goOut">
 				<image class="ico" src="../../static/out.png"></image>
 				<view class="name">退出</view>
 			</view>
@@ -64,6 +64,13 @@
 			...mapGetters(['hasLogin', 'userInfo', 'balanceInfo'])
 		},
 		methods: {
+			...mapMutations(['logout']),
+			goOut() {
+				this.logout()
+				uni.navigateTo({
+					url: '/pages/public/login'
+				})
+			},
 			baseClick() {
 				if (!this.hasLogin) {
 					uni.navigateTo({

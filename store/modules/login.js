@@ -48,6 +48,7 @@ const login = {
 			state.userInfo = {}
 			uni.removeStorageSync('userInfo')
 			uni.removeStorageSync('token')
+			uni.removeStorageSync('password')
 		}
 	},
 	actions: {
