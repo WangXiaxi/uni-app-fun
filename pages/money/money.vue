@@ -7,7 +7,8 @@
 			<view class="balance-btn" @click="navTo('/pages/money/invest')">立即充值</view>
 		</view>
 		<view class="list-title">消费记录</view>
-		<view class="list">
+		<empty v-if="loadingType === 'nomore' && list.length === 0" text="暂无相关记录"></empty>
+		<view class="list" v-else>
 			<view class="item">
 				<image class="ico" src="/static/bal-1.png"></image>
 				<!-- <image class="ico" src="/static/bal-2.png"></image> -->
@@ -22,10 +23,13 @@
 				</view>
 			</view>
 		</view>
+		<uni-load-more :status="loadingType"></uni-load-more>
 	</view>
 </template>
 
 <script>
+	import uniLoadMore from '@/components/uni-load-more/uni-load-more.vue'
+	import empty from '@/components/empty'
 	import {
 		mapGetters,
 		mapActions,
@@ -38,19 +42,54 @@
 			return {
 				page: 0,
 				pages: 0, // 总页数
-				loadingType: 'loading', //加载更多状态
+				loadingType: 'more', //加载更多状态
 				list: []
 			}
 		},
 		computed: {
-			...mapGetters(['balanceInfo'])
+			...mapGetters(['balanceInfo', 'token'])
 		},
 		onLoad() {
 			this.createWare()
 			this.getBalance()
+			this.loadData()
+		},
+		//下拉刷新
+		onPullDownRefresh() {
+			this.loadData('refresh');
+		},
+		//加载更多
+		onReachBottom() {
+			this.loadData();
 		},
 		methods: {
 			...mapMutations(['getBalance']),
+			loadData(type = 'add', loading) {
+				if (this.loadingType === 'loading' && type !== 'refresh') return // 有数据在加载时 不进行请求
+				//没有更多直接返回
+				if (type === 'add') {
+					if (this.loadingType === 'nomore') {
+						return;
+					}
+					this.page = this.page + 1;
+					this.loadingType = 'loading';
+				} else {
+					this.loadingType = 'loading';
+				}
+				
+				if (type === 'refresh') {
+					this.page = 1;
+					this.list = [];
+				}
+				phoneModel.getCallPayInfo({ page: this.page, limit: 10, token: this.token }).then(res => {
+					this.list.push(...res.data.data)
+					this.pages = res.data.totalPage
+					uni.stopPullDownRefresh();
+					//判断是否还有下一页，有是more  没有是nomore(测试数据判断大于20就没有了)
+					this.loadingType = this.page >= this.pages ? 'nomore' : 'more';
+				}).catch(() => {
+				})
+			},
 			navTo(url) {
 				uni.navigateTo({
 					url

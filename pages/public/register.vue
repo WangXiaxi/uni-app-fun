@@ -33,7 +33,7 @@
 			
 			<button type="primary" class="no-border confirm-btn" @click="confirm" :loading="loading" :disabled="loading">立即注册</button>
 			
-			<view class="btn-text">返回登录</view>
+			<view class="btn-text" @click="navBack">返回登录</view>
 		</view>
 		<view class="bot-text">© 2020 杭州义杭网络科技有限公司</view>
 	</view>
