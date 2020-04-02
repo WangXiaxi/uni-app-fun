@@ -1,6 +1,13 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/call/index",
+			"style": {
+				"navigationBarTitleText": "拨号",
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/money/money",
 			"style": {
 				"navigationBarTitleText": "余额",
@@ -11,13 +18,6 @@
 						"buttons": []
 					}
 				}
-			}
-		},
-		{
-			"path": "pages/call/index",
-			"style": {
-				"navigationBarTitleText": "拨号",
-				"navigationStyle": "custom"
 			}
 		},
 		{

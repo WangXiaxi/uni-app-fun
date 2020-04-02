@@ -55,12 +55,9 @@
 			createWare() {
 				let ctx = uni.createCanvasContext('firstCanvas');
 				//获得画笔
-				window.requestAnimFrame = (function() {
-					return window.requestAnimationFrame ||
-						window.webkitRequestAnimationFrame ||
-						window.mozRequestAnimationFrame ||
-						function(callback) {
-							window.setTimeout(callback, 1000 / 60);
+				const requestAnimFrame = (function() {
+					return function(callback) {
+							setTimeout(callback, 1000 / 60);
 						};
 				})();
 				// 波浪大小
@@ -72,9 +69,7 @@
 				let step = 0;
 				//定义三条不同波浪的颜色 
 				let lines = ["rgba(0,222,255, 0.2)", "rgba(157,192,249, 0.2)", "rgba(0,168,255, 0.2)"];
-
 				function loop() {
-					console.log(123)
 					//清除canvas内容
 					ctx.clearRect(0, 0, width, height);
 					step++;
