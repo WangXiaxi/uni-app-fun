@@ -36,6 +36,10 @@
 		components: {},
 		data() {
 			return {
+				page: 0,
+				pages: 0, // 总页数
+				loadingType: 'loading', //加载更多状态
+				list: []
 			}
 		},
 		computed: {
