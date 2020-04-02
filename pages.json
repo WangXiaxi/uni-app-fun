@@ -1,6 +1,19 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/money/money",
+			"style": {
+				"navigationBarTitleText": "余额",
+				"navigationBarBackgroundColor": "#3177FE",
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"titleNView": {
+						"buttons": []
+					}
+				}
+			}
+		},
+		{
 			"path": "pages/call/index",
 			"style": {
 				"navigationBarTitleText": "拨号",
@@ -49,19 +62,7 @@
 				}
 			}
 		},
-		{
-			"path": "pages/money/money",
-			"style": {
-				"navigationBarTitleText": "话费充值",
-				"navigationBarBackgroundColor": "#EA1212",
-				"navigationBarTextStyle": "white",
-				"app-plus": {
-					"titleNView": {
-						"buttons": []
-					}
-				}
-			}
-		},
+		
 		{
 			"path": "pages/public/register",
 			"style": {
