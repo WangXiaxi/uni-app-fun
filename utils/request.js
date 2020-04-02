@@ -88,7 +88,6 @@ export default class Request {
 			let next = true
 			let _config = null
 			options.complete = (response) => {
-				console.log(response)
 				let statusCode = response.statusCode
 				let data = response.data
 				response.config = _config

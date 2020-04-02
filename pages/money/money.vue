@@ -9,7 +9,7 @@
 		<view class="list-title">消费记录</view>
 		<empty v-if="loadingType === 'nomore' && list.length === 0" text="暂无相关记录"></empty>
 		<view class="list" v-else>
-			<view class="item">
+			<view class="item" v-for="(item, index) in list" :key="index">
 				<image class="ico" src="/static/bal-1.png"></image>
 				<!-- <image class="ico" src="/static/bal-2.png"></image> -->
 				<view class="info-box">
@@ -17,7 +17,7 @@
 						<view class="name">消费(拨打电话)</view>
 						<!-- <view class="name">消费(加油折扣)</view> -->
 						<view class="bill">交易单号：235366568468986585</view>
-						<view class="time">2019.12.12 13：16</view>
+						<view class="time">2019.12.12 13:16</view>
 					</view>
 					<view class="red">-100.00</view>
 				</view>
@@ -82,11 +82,10 @@
 					this.list = [];
 				}
 				phoneModel.getCallPayInfo({ page: this.page, limit: 10, token: this.token }).then(res => {
-					this.list.push(...res.data.data)
-					this.pages = res.data.totalPage
-					uni.stopPullDownRefresh();
+					this.list.push(...res.data.json)
+					uni.stopPullDownRefresh()
 					//判断是否还有下一页，有是more  没有是nomore(测试数据判断大于20就没有了)
-					this.loadingType = this.page >= this.pages ? 'nomore' : 'more';
+					this.loadingType = res.data.json.length < 10 ? 'nomore' : 'more'
 				}).catch(() => {
 				})
 			},
@@ -104,8 +103,8 @@
 						};
 				})();
 				// 波浪大小
-				let width = 375
-				let height = 200
+				let width = uni.upx2px(750)
+				let height = uni.upx2px(400)
 				let boHeight = height / 4;
 				let posHeight = height / 1.3;
 				//初始角度为0 
