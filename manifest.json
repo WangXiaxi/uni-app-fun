@@ -15,10 +15,8 @@
             "delay" : 0
         },
         "modules" : {
-            "Payment" : {},
             "Contacts" : {},
-            "Maps" : {},
-            "Push" : {}
+            "Maps" : {}
         },
         /* 模块配置 */
         "distribute" : {
@@ -67,18 +65,12 @@
             },
             /* ios打包配置 */
             "sdkConfigs" : {
-                "payment" : {
-                    "weixin" : {
-                        "appid" : "wx8fb88710a894aa32",
-                        "UniversalLinks" : "https://h5.hzyh.ehanone.com/ulink/"
-                    },
-                    "alipay" : {}
-                },
+                "payment" : {},
                 "push" : {},
                 "maps" : {
                     "amap" : {
-                        "appkey_ios" : "bdd2cf43ab816c659bc155cfdbf75547",
-                        "appkey_android" : "0285bc62237082c0241c4f2cc2b95819"
+                        "appkey_ios" : "ec5f4c6a1dab5e54c37f31c5c2be26f4",
+                        "appkey_android" : "7d8bedc2e0a0613ae30efc169bbcac50"
                     }
                 },
                 "ad" : {}
