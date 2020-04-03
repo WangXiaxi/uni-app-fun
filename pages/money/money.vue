@@ -16,10 +16,10 @@
 					<view class="info">
 						<view class="name">消费(拨打电话)</view>
 						<!-- <view class="name">消费(加油折扣)</view> -->
-						<view class="bill">交易单号：235366568468986585</view>
-						<view class="time">2019.12.12 13:16</view>
+						<view class="bill">被呼叫人：{{ item.calle164 }}</view>
+						<view class="time">{{ parseTime(item.calltime, '{y}.{m}.{d} {h}:{i}:{s}') }}</view>
 					</view>
-					<view class="red">-100.00</view>
+					<view class="red">-{{ item.money | nf }}</view>
 				</view>
 			</view>
 		</view>
@@ -36,6 +36,7 @@
 		mapMutations
 	} from 'vuex'
 	import phoneModel from '../../api/phone.js'
+	import { parseTime } from '@/utils/index.js'
 	export default {
 		components: {},
 		data() {
@@ -63,6 +64,7 @@
 			this.loadData();
 		},
 		methods: {
+			parseTime,
 			...mapMutations(['getBalance']),
 			loadData(type = 'add', loading) {
 				if (this.loadingType === 'loading' && type !== 'refresh') return // 有数据在加载时 不进行请求
