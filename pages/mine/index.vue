@@ -5,9 +5,9 @@
 		</view>
 		<view class="base-info" @click="baseClick">
 			<view class="header">
-				<image src="../../static/gywm2.png"></image>
+				<image :src="(userInfo && userInfo.pic) || '/static/gywm2.png'"></image>
 			</view>
-			<view class="name" v-if="hasLogin">{{userInfo.realname || userInfo.mobile}}</view>
+			<view class="name" v-if="hasLogin">{{userInfo.username || userInfo.mobile}}</view>
 			<view class="name" v-if="!hasLogin">游客您好，请点击登录</view>
 			<view class="account">余额：￥{{ balanceInfo.Money | nf }}</view>
 			<view class="time">
@@ -18,7 +18,7 @@
 		</view>
 
 		<view class="list">
-			<view class="item border-b pb">
+			<view class="item border-b pb" @click="navTo('/pages/mine/info')">
 				<image class="ico" src="../../static/edit.png"></image>
 				<view class="name">编辑资料</view>
 			</view>
@@ -78,6 +78,7 @@
 					})
 					return
 				}
+				this.navTo('/pages/mine/info')
 			},
 			/**
 			 * 统一跳转接口,拦截未登录路由

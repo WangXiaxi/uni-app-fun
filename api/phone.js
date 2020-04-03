@@ -8,6 +8,14 @@ import WxValidate from '../utils/validate'
  */
 
 class PhoneModel extends Request {
+	// 更新记录
+	updateCallUser(params) {
+		return this.get('/service/updateCallUser', { ...params, noToken: true })
+	}
+	// 获取电话记录
+	getCallHD(params) {
+		return this.get('/service/getCallHD', { ...params, noToken: true })
+	}
 	// 获取记录
 	getCallPayInfo(params) {
 		return this.get('/service/getCallPayInfo', { ...params, noToken: true })

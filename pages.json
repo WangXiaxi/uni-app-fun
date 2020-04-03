@@ -8,6 +8,22 @@
 			}
 		},
 		{
+			"path": "pages/mine/info",
+			"style": {
+				"navigationBarTitleText": "个人资料",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"width": "40px",
+							"text": "保存",
+							"fontSize": "15",
+							"color": "#0b8bef"
+						}]
+					}
+				}
+			}
+		},
+		{
 			"path": "pages/money/log",
 			"style": {
 				"navigationBarTitleText": "充值记录",

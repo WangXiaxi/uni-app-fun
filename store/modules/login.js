@@ -39,6 +39,9 @@ const login = {
 		getBalance(state) {
 			phoneModel.getCallBalance({ mobile: state.userInfo.mobile, token: state.token }).then(res => {
 				state.balanceInfo = res.data.json
+				console.log(res.data.json)
+				state.userInfo = res.data.json.Info
+				uni.setStorageSync('userInfo', res.data.json.Info) // 缓存用户登陆状态
 				uni.setStorageSync('balanceInfo', res.data.json) // 缓存用户登陆状态
 			})
 		},

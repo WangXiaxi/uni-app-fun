@@ -9,7 +9,6 @@
 			<input class="input" type="password" v-model="formData.rePassword" placeholder="请确认密码" placeholder-class="placeholder" />
 		</view>
 		<button class="add-btn" @click="confirm" :loading="loading" :disabled="loading">提交</button>
-		<view class="pass" @click="navTo('/pages/set/landPassMobile')">忘记原密码？</view>
 	</view>
 </template>
 
@@ -73,12 +72,12 @@
 				phoneModel.initValidate(rules, messages)
 				if (!phoneModel.WxValidate.checkForm(sendData)) return
 				this.loading = true
-				phoneModel.changePassword({
+				phoneModel.resetCallPass({
 					token: this.token,
 					newPass: sendData.password
 				}).then(() => {
 					this.loading = false
-					this.$api.msg('登陆密码修改成功！', 1500, true, 'success')
+					this.$api.msg('密码修改成功！', 1500, true, 'success')
 					setTimeout(() => {
 						uni.navigateBack({
 							delta: 1

@@ -81,7 +81,6 @@
 		},
 		onLaunch(option) {
 			const userInfoStorage  = uni.getStorageSync('userInfo')
-			console.log(userInfoStorage)
 			if (userInfoStorage) { // 每次重新进入都重新获取token及余额等
 				this.login({ data: { json: userInfoStorage }, callback: () => {
 					this.getBalance()
@@ -160,5 +159,25 @@
 			height: 36rpx;
 			margin-right: 4rpx;
 		}
+	}
+	/*
+		全局公共样式和字体图标
+	*/
+	@font-face {
+		font-family: yticon;
+		font-weight: normal;
+		font-style: normal;
+		src: url('https://at.alicdn.com/t/font_1078604_w4kpxh0rafi.ttf') format('truetype');
+	}
+	
+	.yticon {
+		font-family: "yticon" !important;
+		font-size: 16px;
+		font-style: normal;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+	.icon-you:before {
+		content: "\e606";
 	}
 </style>

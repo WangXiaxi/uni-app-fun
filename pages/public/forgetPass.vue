@@ -107,7 +107,7 @@
 							newPass: formData.password
 						}).then(res => {
 							this.loading = false
-							this.$api.msg('密码修改成功！请登录', 1500, true, 'success')
+							this.$api.msg('密码修改成功！', 1500, true, 'success')
 							setTimeout(this.navBack, 1500)
 						}).catch(() => {
 							this.loading = false

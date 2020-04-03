@@ -81,7 +81,7 @@
 					this.page = 1;
 					this.list = [];
 				}
-				phoneModel.getCallPayInfo({ page: this.page, limit: 10, token: this.token }).then(res => {
+				phoneModel.getCallHD({ page: this.page, limit: 10, token: this.token }).then(res => {
 					this.list.push(...res.data.json)
 					uni.stopPullDownRefresh()
 					//判断是否还有下一页，有是more  没有是nomore(测试数据判断大于20就没有了)

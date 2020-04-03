@@ -78,7 +78,13 @@
 				})
 			},
 			navBack() {
-				uni.navigateBack()
+				if (this.$api.prePage()) {
+					uni.navigateBack()
+				} else {
+					uni.switchTab({
+						url: '/pages/mine/index'
+					})
+				}
 			},
 			confirm() { // 确定操作
 				const {
