@@ -48,7 +48,7 @@
 		<view class="list-cell">
 			<text class="cell-tit">检查更新</text>
 			<text class="cell-tip">当前版本 {{version}}</text>
-			<text class="cell-more yticon icon-you"></text>
+			<!-- <text class="cell-more yticon icon-you"></text> -->
 		</view>
 		<view class="list-cell log-out-btn" @click="toLogout">
 			<text class="cell-tit">退出登录</text>
