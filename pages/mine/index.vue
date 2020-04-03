@@ -30,13 +30,14 @@
 				<image class="ico" src="../../static/pay.png"></image>
 				<view class="name">充值</view>
 			</view>
-			<view class="item border-b pb pt">
-				<image class="ico" src="../../static/help.png"></image>
-				<view class="name">帮助中心</view>
-			</view>
-			<view class="item pt" @click="navTo('/pages/public/landPass')">
+
+			<view class="item border-b pb pt" @click="navTo('/pages/public/landPass')">
 				<image class="ico" src="../../static/pass.png"></image>
 				<view class="name">修改密码</view>
+			</view>
+			<view class="item pt" @click="call">
+				<image class="ico" src="../../static/help.png"></image>
+				<view class="name">客服电话</view>
 			</view>
 			<view class="item pt" @click="goOut">
 				<image class="ico" src="../../static/out.png"></image>
@@ -65,6 +66,11 @@
 		},
 		methods: {
 			...mapMutations(['logout']),
+			call() {
+				uni.makePhoneCall({
+					phoneNumber: '4000571775' //仅为示例
+				})
+			},
 			goOut() {
 				this.logout()
 				uni.navigateTo({

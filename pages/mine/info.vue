@@ -1,11 +1,11 @@
 <template>
 	<view class="content">
-		<view class="list-cell m-t" @click="changeHead()" hover-class="cell-hover" :hover-stay-time="50">
+		<view class="list-cell m-t" hover-class="cell-hover" :hover-stay-time="50">
 			<view class="cell-tit">
 				<image class="face" :src="userInfo.pic ? userInfo.pic : '/static/gywm2.png'"></image>
 			</view>
-			<text class="cell-tip">更换头像</text>
-			<text class="cell-more yticon icon-you"></text>
+			<text class="cell-tip">头像</text>
+			<!-- <text class="cell-more yticon icon-you"></text> -->
 		</view>
 		<view class="list-cell b-b m-t">
 			<view class="cell-tit">* 姓名</view>
