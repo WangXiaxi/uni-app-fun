@@ -8,6 +8,10 @@ import WxValidate from '../utils/validate'
  */
 
 class MineModel extends Request {
+	// 删除消息
+	version(params = {}) {
+		return this.get('/service/getOilAppVersion', { ...params })
+	}
 	/**
 	 * 验证表单
 	 */

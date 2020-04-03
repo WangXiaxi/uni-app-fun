@@ -31,7 +31,7 @@
 										mask: true,
 										title: '正在下载更新，请勿退出！'
 									})
-									var dtask = plus.downloader.createDownload(url_base_image + '/public/app/app_' + res.data + '.apk', {},
+									var dtask = plus.downloader.createDownload(url_base_image + '/public/app/oil_app_' + res.data + '.apk', {},
 										function(d, status) {
 											uni.hideLoading()
 											// 下载完成  
