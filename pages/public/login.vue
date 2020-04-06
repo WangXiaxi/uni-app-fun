@@ -7,11 +7,11 @@
 		<view class="bg">
 			<image src="../../static/bg-mine.png"></image>
 		</view>
-		<view class="header">
+		<!-- <view class="header">
 			<view class="header-box">
 				<image src="../../static/ico-header.png"></image>
 			</view>
-		</view>
+		</view> -->
 		<view class="center">
 			<view class="title">Hi~</view>
 			<view class="item">
@@ -29,7 +29,7 @@
 			</view>
 			<button type="primary" class="no-border confirm-btn" @click="confirm" :loading="loading" :disabled="loading">登录</button>
 		</view>
-		<view class="bot-text">© 2020 杭州义杭网络科技有限公司</view>
+		<view class="bot-text">© 2020 杭州乐庄游网络科技有限公司</view>
 	</view>
 </template>
 

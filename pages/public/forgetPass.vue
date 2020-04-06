@@ -224,16 +224,23 @@
 		}
 	}
 	.add-btn {
+		color: #FFFFFF;
+		padding: 0 38upx;
+		margin: 60rpx auto 0;
+		border-radius: 100px;
+		height: 96rpx;
+		width: 626rpx;
+		font-size: 36rpx;
+		background: linear-gradient(-90deg, rgba(137, 175, 249, 1), rgba(8, 57, 153, 1));
+		box-shadow: 0px 16px 64px 6px rgba(2, 85, 196, 0.3);
 		display: flex;
-		align-items: center;
 		justify-content: center;
-		width: 690upx;
-		height: 80upx;
-		margin: 60upx auto 20upx;
-		font-size: $font-lg;
-		color: #fff;
-		background-color: $base-color;
-		border-radius: 10upx;
-		box-shadow: 1px 2px 5px rgba(219, 63, 96, 0.4);
+		align-items: center;
+	
+		&[disabled] {
+			background: linear-gradient(-90deg, rgba(137, 175, 249, 1), rgba(8, 57, 153, 1));
+			color: #FFFFFF;
+			opacity: 0.6;
+		}
 	}
 </style>

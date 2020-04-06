@@ -7,11 +7,11 @@
 		<view class="bg">
 			<image src="../../static/bg-mine.png"></image>
 		</view>
-		<view class="header">
+		<!-- <view class="header">
 			<view class="header-box">
 				<image src="../../static/ico-header.png"></image>
 			</view>
-		</view>
+		</view> -->
 		<view class="center">
 			<view class="title">注册</view>
 			<view class="item">
@@ -35,7 +35,7 @@
 			
 			<view class="btn-text" @click="navBack">返回登录</view>
 		</view>
-		<view class="bot-text">© 2020 杭州义杭网络科技有限公司</view>
+		<view class="bot-text">© 2020 杭州乐庄游网络科技有限公司</view>
 	</view>
 </template>
 

@@ -57,7 +57,10 @@
 </template>
 
 <script>
-	import { versionAnd, versionIos } from '@/common/config/index.js'
+	import {
+		versionAnd,
+		versionIos
+	} from '@/common/config/index.js'
 	import {
 		mapGetters,
 		mapActions,
@@ -67,6 +70,7 @@
 	export default {
 		data() {
 			return {
+				version: '',
 				username: '',
 				gender: null,
 				birthday: '',
@@ -82,6 +86,7 @@
 						this.version = versionAnd
 					}
 					if (res.platform == 'ios') {
+						console.log(versionIos)
 						this.version = versionIos
 					}
 				}
@@ -100,13 +105,27 @@
 			...mapMutations(['logout', 'getBalance']),
 			// 提交操作
 			comfirm() {
-				const { username, gender, birthday, email } = this
-				const { id } = this.userInfo.users
+				const {
+					username,
+					gender,
+					birthday,
+					email
+				} = this
+				const {
+					id
+				} = this.userInfo.users
 				uni.showLoading({
 					title: '请求中...',
 					mask: true
 				})
-				phoneModel.updateCallUser({ token: this.token, userid: id, birthday, gender, username, email }).then(res => {
+				phoneModel.updateCallUser({
+					token: this.token,
+					userid: id,
+					birthday,
+					gender,
+					username,
+					email
+				}).then(res => {
 					uni.hideLoading()
 					this.$api.msg('修改信息成功！')
 					this.getBalance()
@@ -127,10 +146,10 @@
 				} = this.userInfo
 				console.log(this.userInfo)
 				Object.assign(this, {
-					username,
+					username: username ? username : '',
 					gender,
 					birthday,
-					email
+					email: email ? email : ''
 				})
 			},
 			//退出登录
@@ -158,13 +177,16 @@
 		text-align: right;
 		font-size: $font-base + 2upx;
 	}
+
 	.placeholder {
 		font-size: $font-base + 2upx;
 		color: #909399;
 	}
+
 	.uni-input {
 		font-size: $font-base + 2upx;
 	}
+
 	.face {
 		display: block;
 		width: 102upx;
@@ -184,15 +206,17 @@
 		position: relative;
 		background: #fff;
 		justify-content: center;
+
 		&.log-out-btn {
 			margin-top: 40upx;
-		
+
 			.cell-tit {
 				color: $uni-color-primary;
 				text-align: center;
 				margin-right: 0;
 			}
 		}
+
 		&.cell-hover {
 			background: #fafafa;
 		}
