@@ -146,7 +146,6 @@
 				})
 				uni.getLocation({
 					type: 'gcj02',
-					geocode: true,
 					success: (res) => {
 						uni.hideLoading()
 						this.latitude = res.latitude
