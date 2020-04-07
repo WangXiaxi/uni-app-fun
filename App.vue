@@ -69,7 +69,7 @@
 							showCancel: false,
 							success: (e) => {
 								if (e.confirm) {
-									var url = 'itms-apps://itunes.apple.com/cn/app/id1474572172';
+									var url = 'itms-apps://itunes.apple.com/cn/app/id1506190317';
 									plus.runtime.openURL(url)
 								}
 							}
