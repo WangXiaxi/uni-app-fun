@@ -57,6 +57,12 @@
 				this.isAddClass = e
 			},
 			dialPhone(item) { // 拨号操作
+				if(!this.hasLogin) {
+					uni.navigateTo({
+						url: '/pages/public/login'
+					})
+					return
+				}
 				if (item.phone.length < 5) {
 					return this.$api.msg('输入号码不正确！')
 				}
@@ -114,12 +120,6 @@
 				this.search()
 			},
 			dele(type = null) {
-				if(!this.hasLogin) {
-					uni.navigateTo({
-						url: '/pages/public/login'
-					})
-					return
-				}
 				if (type === 'all') {
 					this.number = ''
 					return

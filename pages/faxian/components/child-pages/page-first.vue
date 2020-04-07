@@ -124,7 +124,7 @@
 				// 	duration: 2000
 				// })
 				
-				if (this.hasLogin && type) {
+				if (!this.hasLogin && type) {
 					url = '/pages/public/login';
 				} else {
 					this.setParams(item)
