@@ -144,7 +144,7 @@
 		position: absolute;
 		left: 40upx;
 		z-index: 9999;
-		top: 70upx;
+		top: 90upx;
 		color: #FFFFFF;
 		display: flex;
 		align-items: center;

@@ -1,7 +1,7 @@
 <template>
 
 	<view class="page-section swiper">
-		<view style="height: 240rpx;"></view>
+		<view style="height: 260rpx;"></view>
 		<view class="bg"></view>
 		<view class="big-title">加油站</view>
 		<!-- 查询条件 -->
@@ -263,7 +263,7 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-		padding-top: 84rpx;
+		padding-top: 104rpx;
 		font-size: 48rpx;
 		line-height: 48rpx;
 		color: #111111;
@@ -272,7 +272,7 @@
 	}
 	.sort {
 		position: fixed;
-		top: 156rpx;
+		top: 176rpx;
 		background: #FFFFFF;
 		width: 700rpx;
 		left: 50%;

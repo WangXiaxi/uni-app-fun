@@ -158,7 +158,7 @@
 
 <style lang="scss">
 	.content {
-		padding-top: 84rpx;
+		padding-top: 104rpx;
 	}
 
 	.big-title {
