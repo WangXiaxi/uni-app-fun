@@ -56,6 +56,10 @@ class PhoneModel extends Request {
 	getCallBalance(params) {
 		return this.post('/service/getCallBalance', { ...params, noToken: true })
 	}
+	// getOilSysConf
+	getOilSysConf(params = {}) {
+		return this.post('/service/getOilSysConf', { ...params, noToken: true })
+	}
 	/**
 	 * 验证表单
 	 */

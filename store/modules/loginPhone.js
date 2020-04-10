@@ -10,14 +10,20 @@ const platform = uni.getSystemInfoSync().platform
 
 const login = {
 	state: {
-		contacts: []
+		contacts: [],
+		isRecharge: true
 	},
 	getters: {
-		contacts:  state => state.contacts
+		contacts: state => state.contacts,
+		isRecharge: state => state.isRecharge
 	},
 	mutations: {
 		setContacts(state, data) {
 			state.contacts = data
+		},
+		setIsRecharge(state, data) {
+			console.log(data)
+			state.isRecharge = data
 		}
 	},
 	actions: {
@@ -88,6 +94,15 @@ const login = {
 			}, (e) => {
 				onAddressBookSetting()
 			});
+		},
+		// getOilSysConf
+		async getOilSysConf({
+			commit
+		}) { // 防止审核展示
+			const res = await phoneModel.getOilSysConf()
+			if (res.data.isRecharge === 'false') {
+				commit('setIsRecharge', false)
+			}
 		},
 		// 注册并登陆 phone
 		async loginPhone({

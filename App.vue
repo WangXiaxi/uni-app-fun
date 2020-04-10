@@ -17,6 +17,7 @@
 
 		methods: {
 			...mapMutations(['login', 'getBalance']),
+			...mapActions(['getOilSysConf']),
 			AndroidCheckUpdate() { // 安卓跟新
 				var _this = this;
 				mineModel.version({ type: 1 }).then(res => {
@@ -94,6 +95,7 @@
 						this.AndroidCheckUpdate()
 					}
 					if (res.platform == 'ios') {
+						this.getOilSysConf()
 						this.IosCheckUpdate()
 					}
 				}

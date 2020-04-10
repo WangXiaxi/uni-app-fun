@@ -4,7 +4,7 @@
 			<canvas style="height: 400rpx;width: 100%" canvas-id="firstCanvas"></canvas>
 			<view class="balance-title">账户总余额</view>
 			<view class="balance-total">{{ balanceInfo.Money | nf }}</view>
-			<view class="balance-btn" @click="navTo('/pages/money/invest')">立即充值</view>
+			<view class="balance-btn" v-if="isRecharge" @click="navTo('/pages/money/invest')">立即充值</view>
 		</view>
 		<view class="list-title">消费记录</view>
 		<empty v-if="loadingType === 'nomore' && list.length === 0" text="暂无相关记录"></empty>
@@ -48,7 +48,7 @@
 			}
 		},
 		computed: {
-			...mapGetters(['balanceInfo', 'token'])
+			...mapGetters(['balanceInfo', 'token', 'isRecharge'])
 		},
 		onLoad() {
 			this.createWare()
