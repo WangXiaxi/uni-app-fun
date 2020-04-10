@@ -3,7 +3,7 @@
     "appid" : "__UNI__B4FA810",
     "description" : "杭州乐庄游网络科技有限公司旗下app",
     "versionName" : "1.0.1",
-    "versionCode" : 101,
+    "versionCode" : 103,
     "transformPx" : false,
     "app-plus" : {
         /* 5+App特有相关 */
@@ -58,7 +58,7 @@
                     "NSCameraUsageDescription" : "开启后，您可以使用摄像头进行扫码、拍照等功能",
                     "NSPhotoLibraryAddUsageDescription" : "开启后，您可以保存照片到相册",
                     "NSMicrophoneUsageDescription" : "开启后，您可以使用语音搜索功能",
-                    "NSContactsUsageDescription" : "开启后，您可以快速拨打服务中心电话",
+                    "NSContactsUsageDescription" : "请点击'好'以允许访问。如果不允许，忆杭通APP将无法访问通讯录中的朋友给您。忆杭通APP仅用于访问通讯录好友，不会保存您的通讯录内容。",
                     "NSLocationWhenInUseUsageDescription" : "开启后，您可以获得附近的商家"
                 },
                 "idfa" : false
