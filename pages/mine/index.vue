@@ -26,7 +26,7 @@
 				<image class="ico" src="../../static/bag.png"></image>
 				<view class="name">余额</view>
 			</view>
-			<view v-if="isRecharge" class="item border-b pb pt" @click="navTo('/pages/money/invest')">
+			<view class="item border-b pb pt" @click="navTo(isRecharge ? '/pages/money/invest' : '/pages/money/testIos')"><!-- v-if="isRecharge" -->
 				<image class="ico" src="../../static/pay.png"></image>
 				<view class="name">充值</view>
 			</view>
@@ -35,7 +35,7 @@
 				<image class="ico" src="../../static/pass.png"></image>
 				<view class="name">修改密码</view>
 			</view>
-			<view class="item pt" :class="{ 'border-b pb': !isRecharge }" @click="call">
+			<view class="item pt" @click="call"> <!-- :class="{ 'border-b pb': !isRecharge }" s-->
 				<image class="ico" src="../../static/help.png"></image>
 				<view class="name">客服电话</view>
 			</view>
@@ -187,10 +187,9 @@
 	}
 
 	.list {
-		text-align: left;
+		text-align: center;
 		font-size: 0;
 		margin-top: 174rpx;
-
 		.item {
 			text-align: center;
 			width: 333rpx;

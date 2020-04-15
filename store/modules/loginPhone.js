@@ -22,7 +22,6 @@ const login = {
 			state.contacts = data
 		},
 		setIsRecharge(state, data) {
-			console.log(data)
 			state.isRecharge = data
 		}
 	},

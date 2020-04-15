@@ -172,7 +172,13 @@
 				"titleNView": false
 			}
 		}
-	],
+		,{
+				"path" : "pages/money/testIos",
+				"style" : {
+					"navigationBarTitleText": "立即充值"
+				}
+			}
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "忆杭网",

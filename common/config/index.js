@@ -8,8 +8,8 @@ export const versionIos = '1.0.0'
 
 if (process.env.NODE_ENV === 'development') {
 	// 开发环境
-	// url_config = 'http://test.hzyh.ehanone.com'
-	// url_base_img = 'http://test.hzyh.ehanone.com'
+	url_config = 'http://test.hzyh.ehanone.com'
+	url_base_img = 'http://test.hzyh.ehanone.com'
 } else {
 	// 生产环境
 	url_config = 'http://hzyh.ehanone.com'

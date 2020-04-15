@@ -194,7 +194,7 @@
 			
 		&[disabled] {
 			background: linear-gradient(-90deg, rgba(137, 175, 249, 1), rgba(8, 57, 153, 1));
-			color: #FFFFFF;
+			color: #FFFFFF !important;
 			opacity: 0.6;
 		}
 	}
