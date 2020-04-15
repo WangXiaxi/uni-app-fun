@@ -16,7 +16,8 @@
         },
         "modules" : {
             "Contacts" : {},
-            "Maps" : {}
+            "Maps" : {},
+            "Payment" : {}
         },
         /* 模块配置 */
         "distribute" : {
@@ -65,7 +66,9 @@
             },
             /* ios打包配置 */
             "sdkConfigs" : {
-                "payment" : {},
+                "payment" : {
+                    "appleiap" : {}
+                },
                 "push" : {},
                 "maps" : {
                     "amap" : {
