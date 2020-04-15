@@ -13,7 +13,7 @@
 
 <script>
 	let iapChannel = null,
-		productIds = ['money50', 'money100', 'money200'];
+		productIds = ['moneys50', 'moneys100', 'moneys200'];
 	export default {
 		data() {
 			return {
@@ -22,15 +22,15 @@
 				loading: false,
 				disabled: true,
 				priceList: [{
-					value: 'money50',
+					value: 'moneys50',
 					text: '50元',
 					checked: true
 				}, {
-					value: 'money100',
+					value: 'moneys100',
 					text: '100元',
 					checked: false
 				}, {
-					value: 'money200',
+					value: 'moneys200',
 					text: '200元',
 					checked: false
 				}]
