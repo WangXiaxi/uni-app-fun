@@ -129,11 +129,9 @@
 				} else {
 					this.setParams(item)
 				}
-				if (isRecharge) {
-					uni.navigateTo({
-						url
-					})
-				}
+				uni.navigateTo({
+					url
+				})
 			},
 			async getOilType() { // 获取油品
 				const res = await faxianModel.getOilType()

@@ -16,8 +16,10 @@
 <script>
 	import {
 		mapGetters,
-		mapMutations
+		mapMutations,
+		mapActions
 	} from 'vuex'
+	import { parseTime } from '@/utils/index.js'
 	export default {
 		data() {
 			return {
@@ -28,6 +30,7 @@
 			...mapGetters(['params', 'isRecharge']),
 		},
 		methods: {
+			...mapActions(['locationContactsAdd']),
 			dial(item) { // 拨号操作
 				if (this.isRecharge) {
 					uni.navigateTo({
@@ -35,7 +38,10 @@
 					})
 				} else {
 					uni.makePhoneCall({
-						phoneNumber: item // 仅为示例
+						phoneNumber: item, // 仅为示例
+						success: () => {
+							this.locationContactsAdd({ answer: item, answer_name: this.params.name, time: parseTime() })
+						}
 					})
 				}
 			}

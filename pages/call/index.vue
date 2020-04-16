@@ -34,7 +34,7 @@
 
 <script>
 	import { mapGetters, mapActions, mapMutations } from 'vuex'
-
+	import { parseTime } from '@/utils/index.js'
 	export default {
 		data() {
 			return {
@@ -52,7 +52,7 @@
 			this.initContacts()
 		},
 		methods: {
-			...mapActions(['initContacts']),
+			...mapActions(['initContacts', 'locationContactsAdd']),
 			addClass(e) {
 				this.isAddClass = e
 			},
@@ -72,7 +72,10 @@
 					})
 				} else {
 					uni.makePhoneCall({
-						phoneNumber: item.phone // 仅为示例
+						phoneNumber: item.phone, // 仅为示例
+						success: () => {
+							this.locationContactsAdd({ answer: item.phone, answer_name: item.name, time: parseTime() })
+						}
 					})
 				}
 				
@@ -98,7 +101,10 @@
 						})
 					} else {
 						uni.makePhoneCall({
-							phoneNumber: phone // 仅为示例
+							phoneNumber: phone, // 仅为示例
+							success: () => {
+								this.locationContactsAdd({ answer: phone, answer_name: name, time: parseTime() })
+							}
 						})
 					}
 				} else {
@@ -108,7 +114,10 @@
 						})
 					} else {
 						uni.makePhoneCall({
-							phoneNumber: this.number // 仅为示例
+							phoneNumber: this.number, // 仅为示例
+							success: () => {
+								this.locationContactsAdd({ answer: this.number, answer_name: this.number, time: parseTime() })
+							}
 						})
 					}
 				}

@@ -20,6 +20,8 @@
 	import { mapGetters, mapActions, mapMutations } from 'vuex'
 	import empty from '@/components/empty'
 	import phoneModel from '../../api/phone.js'
+	import { parseTime } from '@/utils/index.js'
+	
 	export default {
 		components: {
 			empty
@@ -30,7 +32,11 @@
 			}
 		},
 		onShow() {
-			if(this.hasLogin && this.isRecharge) this.getLogData()
+			if(this.hasLogin &&	this.isRecharge) {
+				this.getLogData()
+			} else if (!this.isRecharge) {
+				this.getLocationData()
+			}
 		},
 		onLoad() {
 			if(!this.hasLogin) {
@@ -41,10 +47,13 @@
 			this.initContacts()
 		},
 		computed: {
-			...mapGetters(['hasLogin', 'contacts', 'isRecharge'])
+			...mapGetters(['hasLogin', 'contacts', 'isRecharge', 'locationContacts'])
 		},
 		methods: {
-			...mapActions(['initContacts']),
+			...mapActions(['initContacts', 'locationContactsAdd']),
+			getLocationData() {
+				this.list = this.locationContacts
+			},
 			dial(number) { // 拨号操作
 				let cur = null
 				this.contacts.forEach(c => {
@@ -65,7 +74,10 @@
 						})
 					} else {
 						uni.makePhoneCall({
-							phoneNumber: phone // 仅为示例
+							phoneNumber: phone, // 仅为示例
+							success: () => {
+								this.locationContactsAdd({ answer: name, answer_name: phone, time: parseTime() })
+							}
 						})
 					}
 				} else {
@@ -75,11 +87,12 @@
 						})
 					} else {
 						uni.makePhoneCall({
-							phoneNumber: number // 仅为示例
+							phoneNumber: number, // 仅为示例
+							success: () => {
+								this.locationContactsAdd({ answer: number, answer_name: number, time: parseTime() })
+							}
 						})
 					}
-					uni.navigateTo({
-					})
 				}
 			},
 			getLogData() {

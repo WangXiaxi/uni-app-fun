@@ -7,17 +7,23 @@
 import phoneModel from '../../api/phone.js'
 import pinyin from '../../pages/news/components/pinyin/pinyin3.js'
 const platform = uni.getSystemInfoSync().platform
+const locationContactsStorage  = uni.getStorageSync('locationContacts') || []
 
 const login = {
 	state: {
 		contacts: [],
+		locationContacts: locationContactsStorage,
 		isRecharge: true
 	},
 	getters: {
 		contacts: state => state.contacts,
+		locationContacts: state => state.locationContacts,
 		isRecharge: state => state.isRecharge
 	},
 	mutations: {
+		setLocationContacts(state, data) {
+			state.locationContacts = data
+		},
 		setContacts(state, data) {
 			state.contacts = data
 		},
@@ -26,6 +32,16 @@ const login = {
 		}
 	},
 	actions: {
+		// 添加本地记录
+		locationContactsAdd({
+			commit,
+			state
+		}, data) {
+			const cur = JSON.parse(JSON.stringify(state.locationContacts))
+			cur.push(data)
+			commit('setLocationContacts', cur)
+			uni.setStorageSync('locationContacts', cur) // 缓存用户登陆状态
+		},
 		// 获取手机通讯录并存储
 		initContacts({
 			commit

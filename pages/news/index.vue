@@ -121,7 +121,7 @@
 			},
 
 			onSelectClick: function(contact) {
-				if (!this.hasLogin) {
+				if (this.isRecharge && !this.hasLogin) {
 					uni.navigateTo({
 						url: '/pages/public/login'
 					})
@@ -131,7 +131,7 @@
 				this.navTo('/pages/contacts-detail/index')
 			},
 			onSearchInput: function(value) {
-				if (!this.hasLogin) {
+				if (this.isRecharge && !this.hasLogin) {
 					uni.navigateTo({
 						url: '/pages/public/login'
 					})
