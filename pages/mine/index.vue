@@ -9,7 +9,7 @@
 			</view>
 			<view class="name" v-if="hasLogin">{{userInfo.username || userInfo.mobile}}</view>
 			<view class="name" v-if="!hasLogin">游客您好，请点击登录</view>
-			<view class="account">余额：￥{{ balanceInfo.Money | nf }}</view>
+			<view class="account" v-if="isRecharge">余额：￥{{ balanceInfo.Money | nf }}</view>
 			<view class="time">
 				<image src="../../static/date.png"></image>
 				<text v-if="hasLogin">{{balanceInfo.Time | fill}} 到期</text>
@@ -22,7 +22,7 @@
 				<image class="ico" src="../../static/edit.png"></image>
 				<view class="name">编辑资料</view>
 			</view>
-			<view class="item border-b pb" @click="navTo('/pages/money/money')">
+			<view  v-if="isRecharge" class="item border-b pb" @click="navTo('/pages/money/money')">
 				<image class="ico" src="../../static/bag.png"></image>
 				<view class="name">余额</view>
 			</view>
@@ -35,7 +35,7 @@
 				<image class="ico" src="../../static/pass.png"></image>
 				<view class="name">修改密码</view>
 			</view>
-			<view class="item pt" :class="{ 'border-b pb': !isRecharge }" @click="call">
+			<view class="item pt" :class="{ 'pb': !isRecharge }" @click="call">
 				<image class="ico" src="../../static/help.png"></image>
 				<view class="name">客服电话</view>
 			</view>
