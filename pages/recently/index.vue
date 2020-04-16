@@ -43,7 +43,7 @@
 			this.initContacts()
 		},
 		computed: {
-			...mapGetters(['hasLogin', 'contacts'])
+			...mapGetters(['hasLogin', 'contacts', 'isRecharge'])
 		},
 		methods: {
 			...mapActions(['initContacts']),
@@ -61,12 +61,26 @@
 				})
 				if (cur) {
 					const { name, phone } = cur
-					uni.navigateTo({
-						url: `/pages/contacts-ring/index?name=${name}&phone=${phone}`
-					})
+					if (this.isRecharge) {
+						uni.navigateTo({
+							url: `/pages/contacts-ring/index?name=${name}&phone=${phone}`
+						})
+					} else {
+						uni.makePhoneCall({
+							phoneNumber: phone // 仅为示例
+						})
+					}
 				} else {
+					if (this.isRecharge) {
+						uni.navigateTo({
+							url: `/pages/contacts-ring/index?name=${number}&phone=${number}`
+						})
+					} else {
+						uni.makePhoneCall({
+							phoneNumber: number // 仅为示例
+						})
+					}
 					uni.navigateTo({
-						url: `/pages/contacts-ring/index?name=${number}&phone=${number}`
 					})
 				}
 			},

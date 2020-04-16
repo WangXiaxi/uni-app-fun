@@ -25,13 +25,19 @@
 			}
 		},
 		computed: {
-			...mapGetters(['params']),
+			...mapGetters(['params', 'isRecharge']),
 		},
 		methods: {
 			dial(item) { // 拨号操作
-				uni.navigateTo({
-					url: `/pages/contacts-ring/index?name=${this.params.name}&phone=${item}`
-				})
+				if (this.isRecharge) {
+					uni.navigateTo({
+						url: `/pages/contacts-ring/index?name=${this.params.name}&phone=${item}`
+					})
+				} else {
+					uni.makePhoneCall({
+						phoneNumber: item // 仅为示例
+					})
+				}
 			}
 		}
 	}

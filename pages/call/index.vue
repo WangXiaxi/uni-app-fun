@@ -46,7 +46,7 @@
 			}
 		},
 		computed: {
-			...mapGetters(['contacts', 'hasLogin']),
+			...mapGetters(['contacts', 'hasLogin', 'isRecharge']),
 		},
 		onLoad() {
 			this.initContacts()
@@ -66,9 +66,16 @@
 				if (item.phone.length < 5) {
 					return this.$api.msg('输入号码不正确！')
 				}
-				uni.navigateTo({
-					url: `/pages/contacts-ring/index?name=${item.name}&phone=${item.phone}`
-				})
+				if (this.isRecharge) {
+					uni.navigateTo({
+						url: `/pages/contacts-ring/index?name=${item.name}&phone=${item.phone}`
+					})
+				} else {
+					uni.makePhoneCall({
+						phoneNumber: item.phone // 仅为示例
+					})
+				}
+				
 			},
 			dial() { // 拨号操作
 				if(!this.hasLogin) {
@@ -85,13 +92,25 @@
 						name,
 						phone
 					} = this.list[0]
-					uni.navigateTo({
-						url: `/pages/contacts-ring/index?name=${name}&phone=${phone}`
-					})
+					if (this.isRecharge) {
+						uni.navigateTo({
+							url: `/pages/contacts-ring/index?name=${name}&phone=${phone}`
+						})
+					} else {
+						uni.makePhoneCall({
+							phoneNumber: phone // 仅为示例
+						})
+					}
 				} else {
-					uni.navigateTo({
-						url: `/pages/contacts-ring/index?name=${this.number}&phone=${this.number}`
-					})
+					if (this.isRecharge) {
+						uni.navigateTo({
+							url: `/pages/contacts-ring/index?name=${this.number}&phone=${this.number}`
+						})
+					} else {
+						uni.makePhoneCall({
+							phoneNumber: this.number // 仅为示例
+						})
+					}
 				}
 			},
 			search() { // 搜索操作
