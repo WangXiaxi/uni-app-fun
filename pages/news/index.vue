@@ -61,7 +61,7 @@
 			}
 		},
 		computed: {
-			...mapGetters(['contacts', 'hasLogin']),
+			...mapGetters(['contacts', 'hasLogin', 'isRecharge']),
 		},
 		onLoad() {
 			this.initContacts()
@@ -121,6 +121,7 @@
 			},
 
 			onSelectClick: function(contact) {
+				console.log(this.hasLogin, this.isRecharge)
 				if (this.isRecharge && !this.hasLogin) {
 					uni.navigateTo({
 						url: '/pages/public/login'

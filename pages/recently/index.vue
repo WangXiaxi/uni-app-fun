@@ -32,6 +32,9 @@
 			}
 		},
 		onShow() {
+			if (!this.hasLogin) {
+				this.list = []
+			}
 			if(this.hasLogin &&	this.isRecharge) {
 				this.getLogData()
 			} else if (!this.isRecharge) {
