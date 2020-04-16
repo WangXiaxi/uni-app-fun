@@ -30,9 +30,7 @@
 			}
 		},
 		onShow() {
-			if(this.hasLogin) {
-				this.getLogData()
-			}
+			if(this.hasLogin && this.isRecharge) this.getLogData()
 		},
 		onLoad() {
 			if(!this.hasLogin) {

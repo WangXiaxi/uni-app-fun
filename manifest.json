@@ -3,7 +3,7 @@
     "appid" : "__UNI__B4FA810",
     "description" : "杭州乐庄游网络科技有限公司旗下app",
     "versionName" : "1.0.1",
-    "versionCode" : 103,
+    "versionCode" : 106,
     "transformPx" : false,
     "app-plus" : {
         /* 5+App特有相关 */
@@ -16,8 +16,7 @@
         },
         "modules" : {
             "Contacts" : {},
-            "Maps" : {},
-            "Payment" : {}
+            "Maps" : {}
         },
         /* 模块配置 */
         "distribute" : {
@@ -66,9 +65,7 @@
             },
             /* ios打包配置 */
             "sdkConfigs" : {
-                "payment" : {
-                    "appleiap" : {}
-                },
+                "payment" : {},
                 "push" : {},
                 "maps" : {
                     "amap" : {
