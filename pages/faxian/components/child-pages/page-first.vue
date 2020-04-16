@@ -102,7 +102,7 @@
 			}
 		},
 		computed: {
-			...mapGetters(['hasLogin'])
+			...mapGetters(['hasLogin', 'isRecharge'])
 		},
 		created() {
 			this.getOilType() // 获取油品
@@ -129,9 +129,11 @@
 				} else {
 					this.setParams(item)
 				}
-				uni.navigateTo({
-					url
-				})
+				if (isRecharge) {
+					uni.navigateTo({
+						url
+					})
+				}
 			},
 			async getOilType() { // 获取油品
 				const res = await faxianModel.getOilType()
