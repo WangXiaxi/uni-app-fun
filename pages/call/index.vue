@@ -34,7 +34,7 @@
 
 <script>
 	import { mapGetters, mapActions, mapMutations } from 'vuex'
-	import { parseTime } from '@/utils/index.js'
+	import { parseTime, debounce } from '@/utils/index.js'
 	export default {
 		data() {
 			return {
@@ -42,7 +42,8 @@
 				numberList: [1, 2, 3, 4, 5, 6, 7, 8, 9],
 				engList: ['ABC', 'DEF', 'GHI','JKL','MNO','PQR','STU','VWXYZ'],
 				list: [],
-				isAddClass: ''
+				isAddClass: '',
+				searchs: null
 			}
 		},
 		computed: {
@@ -50,6 +51,7 @@
 		},
 		onLoad() {
 			this.initContacts()
+			this.searchs = debounce(this.search)
 		},
 		methods: {
 			...mapActions(['initContacts', 'locationContactsAdd']),
@@ -124,28 +126,26 @@
 			},
 			search() { // 搜索操作
 				const number = this.number
-				setTimeout(() => {
-					const list = []
-					this.contacts.forEach(c => {
-						c.contacts.forEach(j => {
-							j.children.forEach(k => {
-								if (k.indexOf(number) > -1) {
-									list.push({
-										name: j.name,
-										phone: k
-									})
-								}
-							})
-
+				const list = []
+				this.contacts.forEach(c => {
+					c.contacts.forEach(j => {
+						j.children.forEach(k => {
+							if (k.indexOf(number) > -1) {
+								list.push({
+									name: j.name,
+									phone: k
+								})
+							}
 						})
+
 					})
-					this.list = list
-				}, 50)
+				})
+				this.list = list
 			},
 
 			addNum(val) {
 				this.number = `${this.number}${val}`
-				this.search()
+				this.searchs()
 			},
 			dele(type = null) {
 				if (type === 'all') {
